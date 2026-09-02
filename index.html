@@ -1,0 +1,1958 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BENGROLL ($BENGROLL) — The Cat That Larped a Bankroll</title>
+    <meta name="description" content="$BENGROLL is a community-driven memecoin on Solana. Nine lives, zero guarantees. Larp responsibly." />
+    <meta name="theme-color" content="#F4EBD9" />
+
+    <!-- Social cards -->
+    <meta property="og:title" content="BENGROLL ($BENGROLL)" />
+    <meta property="og:description" content="The cat that larped a bankroll. From cracked screens to eight-figure bags." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./bengal.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="./bengal.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind (Play CDN, no build step) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- React 18 UMD -->
+    <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+
+    <style>
+      html, body, #root { min-height: 100%; margin: 0; padding: 0; }
+      body { background: #F4EBD9; }
+      /* Shown only until React paints, and only if something went wrong. */
+      #boot { font-family: ui-monospace, monospace; padding: 24px; color: #4A423C; }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"><div id="boot">Loading BENGROLL&hellip;</div></div>
+
+    <noscript>
+      <div style="font-family: ui-monospace, monospace; padding: 24px">
+        BENGROLL needs JavaScript enabled. $BENGROLL is a community-driven memecoin
+        created for entertainment. Nine lives, zero guarantees.
+      </div>
+    </noscript>
+
+    <script>
+      // The whole site, pre-compiled from JSX. No Babel needed at runtime.
+      window.addEventListener("error", function (e) {
+        var boot = document.getElementById("boot");
+        if (boot) boot.textContent = "Failed to load: " + (e.message || "unknown error");
+      });
+    </script>
+
+    <script>
+/* ==========================================================================
+   BENGROLL — application bundle
+   Pre-transpiled from JSX so the page runs as plain ES2018. Everything below
+   is generated; edit the CONFIG object near the top to change links, the
+   contract address, or the mascot path.
+   ========================================================================== */
+(() => {
+  const { useState, useRef, useEffect, useCallback, useMemo } = React;
+  function Ico({ size = 24, color = "currentColor", strokeWidth = 2, children, fill = "none", ...rest }) {
+    return /* @__PURE__ */ React.createElement(
+      "svg",
+      {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: size,
+        height: size,
+        viewBox: "0 0 24 24",
+        fill,
+        stroke: color,
+        strokeWidth,
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        style: { display: "block", flexShrink: 0 },
+        "aria-hidden": "true",
+        ...rest
+      },
+      children
+    );
+  }
+  const Copy = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("rect", { x: "9", y: "9", width: "12", height: "12", rx: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" }));
+  const Check = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M20 6 9 17l-5-5" }));
+  const Volume2 = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M11 5 6 9H2v6h4l5 4z" }), /* @__PURE__ */ React.createElement("path", { d: "M16 9a4 4 0 0 1 0 6" }), /* @__PURE__ */ React.createElement("path", { d: "M19.5 6.5a8 8 0 0 1 0 11" }));
+  const VolumeX = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M11 5 6 9H2v6h4l5 4z" }), /* @__PURE__ */ React.createElement("path", { d: "m23 9-6 6" }), /* @__PURE__ */ React.createElement("path", { d: "m17 9 6 6" }));
+  const Send = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M22 2 11 13" }), /* @__PURE__ */ React.createElement("path", { d: "M22 2 15 22l-4-9-9-4z" }));
+  const LineChart = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M3 3v18h18" }), /* @__PURE__ */ React.createElement("path", { d: "m19 9-5 5-4-4-3 3" }));
+  const Download = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }), /* @__PURE__ */ React.createElement("path", { d: "M7 10l5 5 5-5" }), /* @__PURE__ */ React.createElement("path", { d: "M12 15V3" }));
+  const Wallet = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5" }), /* @__PURE__ */ React.createElement("path", { d: "M17 13h.01" }));
+  const Coins = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("circle", { cx: "8", cy: "8", r: "6" }), /* @__PURE__ */ React.createElement("path", { d: "M18.09 10.37A6 6 0 1 1 10.34 18" }), /* @__PURE__ */ React.createElement("path", { d: "M7 6h1v4" }), /* @__PURE__ */ React.createElement("path", { d: "m16.71 13.88.7.71-2.82 2.82" }));
+  const Flame = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" }));
+  const Lock = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("rect", { x: "3", y: "11", width: "18", height: "11", rx: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" }));
+  const ShieldCheck = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" }), /* @__PURE__ */ React.createElement("path", { d: "m9 12 2 2 4-4" }));
+  const Sparkles = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M12 3 13.9 8.6 19.5 10.5 13.9 12.4 12 18 10.1 12.4 4.5 10.5 10.1 8.6z" }), /* @__PURE__ */ React.createElement("path", { d: "M19 15v4" }), /* @__PURE__ */ React.createElement("path", { d: "M17 17h4" }));
+  const Smartphone = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("rect", { x: "5", y: "2", width: "14", height: "20", rx: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M12 18h.01" }));
+  const ArrowRight = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M5 12h14" }), /* @__PURE__ */ React.createElement("path", { d: "m12 5 7 7-7 7" }));
+  const Menu = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M4 6h16" }), /* @__PURE__ */ React.createElement("path", { d: "M4 12h16" }), /* @__PURE__ */ React.createElement("path", { d: "M4 18h16" }));
+  const XIcon = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M18 6 6 18" }), /* @__PURE__ */ React.createElement("path", { d: "m6 6 12 12" }));
+  const Sun = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "12", r: "4" }), /* @__PURE__ */ React.createElement("path", { d: "M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" }));
+  const Moon = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z" }));
+  const TrendingUp = (p) => /* @__PURE__ */ React.createElement(Ico, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M16 7h6v6" }), /* @__PURE__ */ React.createElement("path", { d: "m22 7-8.5 8.5-5-5L2 17" }));
+  const CONFIG = {
+    ticker: "$BENGROLL",
+    // Placeholder. Swap for the real mint address after deploy.
+    contract: "BEN6r0LLcatLARPed1nt0Rea11tyS0LANAmintXXXX",
+    x: "https://x.com/bengroll",
+    telegram: "https://t.me/bengroll",
+    dexscreener: "https://dexscreener.com/solana/",
+    chartEmbed: "",
+    // e.g. "https://dexscreener.com/solana/<pair>?embed=1&theme=dark"
+    /* Hero mascot art — the low-poly casino Bengal render.
+       Save it to /public/bengal.png. Intrinsic size 1254x1254 (square), which is
+       declared on the <img> so the frame reserves its space and nothing shifts.
+       If the file is missing the hero falls back to the drawn scene. */
+    mascot: "./bengal.png"
+  };
+  const PALETTE = {
+    paper: {
+      bg: "#F4EBD9",
+      panel: "#FFF8EA",
+      panelAlt: "#EADCC2",
+      ink: "#0F0D0C",
+      border: "#0F0D0C",
+      text: "#0F0D0C",
+      dim: "#4A423C",
+      dot: "rgba(15,13,12,0.13)",
+      shadow: "#0F0D0C"
+    },
+    news: {
+      bg: "#191614",
+      panel: "#241F1B",
+      panelAlt: "#2E2721",
+      ink: "#0A0908",
+      border: "#0A0908",
+      text: "#F4EBD9",
+      dim: "#B9AC99",
+      dot: "rgba(244,235,217,0.10)",
+      shadow: "#F59E0B"
+    }
+  };
+  const GOLD = "#F59E0B";
+  const AMBER = "#D97706";
+  const GREEN = "#10B981";
+  const INK = "#0F0D0C";
+  const LEVELS = [
+    {
+      id: 0,
+      min: 0,
+      title: "Broke Room Lurker",
+      line: "Torn wallpaper. Cracked screen. Zero balance.",
+      unlock: null
+    },
+    {
+      id: 1,
+      min: 11,
+      title: "Micro-Cap Shill",
+      line: "Plastic gold chain acquired. Nobody has to know.",
+      unlock: "+1 Plastic Gold Chain"
+    },
+    {
+      id: 2,
+      min: 51,
+      title: "Timeline Influencer",
+      line: "Cash stacks on the floor. Replies getting bold.",
+      unlock: "+ Cash stacks on the floor"
+    },
+    {
+      id: 3,
+      min: 101,
+      title: "BENGROLL MANIFESTED",
+      line: "Penthouse. Iced out. The larp went real.",
+      unlock: "PENTHOUSE MODE + iced-out watch"
+    }
+  ];
+  const levelFor = (c) => c >= 101 ? LEVELS[3] : c >= 51 ? LEVELS[2] : c >= 11 ? LEVELS[1] : LEVELS[0];
+  const nextGate = (c) => c < 11 ? 11 : c < 51 ? 51 : c < 101 ? 101 : null;
+  const fakeBalance = (c) => {
+    const v = Math.round(Math.pow(c, 2.35) * 7.4);
+    if (v >= 1e9) return `${(v / 1e9).toFixed(1)}B`;
+    if (v >= 1e6) return `${(v / 1e6).toFixed(1)}M`;
+    if (v >= 1e4) return `${(v / 1e3).toFixed(1)}K`;
+    return v.toLocaleString("en-US");
+  };
+  const CSS = `
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Space+Mono:wght@400;700&display=swap');
+
+.bg-display { font-family: 'Lilita One', 'Impact', system-ui, sans-serif; letter-spacing: .5px; }
+.bg-mono { font-family: 'Space Mono', ui-monospace, 'JetBrains Mono', monospace; }
+
+@keyframes bgMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes bgFloatUp {
+  0%   { transform: translate(0,0) rotate(0deg) scale(.7); opacity: 0; }
+  12%  { opacity: 1; transform: translate(0,-14px) rotate(6deg) scale(1.1); }
+  100% { transform: translate(var(--dx,0px), -230px) rotate(var(--rot,40deg)) scale(.85); opacity: 0; }
+}
+@keyframes bgRain {
+  0%   { transform: translateY(-18vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: .95; }
+  100% { transform: translateY(112vh) rotate(420deg); opacity: 0; }
+}
+@keyframes bgBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes bgPop {
+  0%   { transform: scale(.55) rotate(-6deg); opacity: 0; }
+  55%  { transform: scale(1.12) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes bgToastIn {
+  0%   { transform: translateY(16px) scale(.9); opacity: 0; }
+  60%  { transform: translateY(-4px) scale(1.04); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes bgSparkle { 0%,100% { opacity: .25; transform: scale(.75); } 50% { opacity: 1; transform: scale(1.25); } }
+@keyframes bgFlash { 0% { opacity: 0; } 25% { opacity: .85; } 100% { opacity: 0; } }
+@keyframes bgShake {
+  0%,100% { transform: translate(0,0) rotate(0); }
+  25% { transform: translate(-2px,1px) rotate(-.6deg); }
+  75% { transform: translate(2px,-1px) rotate(.6deg); }
+}
+@keyframes bgTabIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bgSweep { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+
+.bg-marquee-track { animation: bgMarquee 22s linear infinite; }
+.bg-bob { animation: bgBob 4.2s ease-in-out infinite; }
+.bg-pop { animation: bgPop .34s cubic-bezier(.34,1.56,.64,1) both; }
+.bg-toast { animation: bgToastIn .32s cubic-bezier(.34,1.56,.64,1) both; }
+.bg-tabin { animation: bgTabIn .26s ease-out both; }
+.bg-shake { animation: bgShake .22s linear 1; }
+.bg-flash { animation: bgFlash .9s ease-out 1; }
+
+/* ===========================================================================
+   INTERACTION SYSTEM
+   One vocabulary for every clickable thing on the page. Only transform,
+   opacity and box-shadow are animated \u2014 never width/height/margin/top/left,
+   so nothing here can trigger layout. Offset-shadow colour comes from the
+   inherited --bg-shadow custom property, set once on the page root, so the
+   same classes work in both themes without per-element overrides.
+   ========================================================================= */
+
+/* --- Buttons, pills, social badges ------------------------------------- */
+.bg-press {
+  transition: transform .15s ease-out, box-shadow .15s ease-out,
+              background-color .15s ease-out, color .15s ease-out, filter .15s ease-out;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+/* Hover only where a real pointer exists, so touch taps never stick. */
+@media (hover: hover) and (pointer: fine) {
+  .bg-press:hover {
+    transform: translate3d(-2px, -2px, 0);
+    box-shadow: 6px 6px 0px var(--bg-shadow, #0F0D0C);
+    filter: brightness(1.03);
+  }
+}
+.bg-press:active {
+  transform: translate3d(2px, 2px, 0);
+  box-shadow: 1px 1px 0px var(--bg-shadow, #0F0D0C);
+  transition-duration: .08s;
+  filter: none;
+}
+.bg-press:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px ${GOLD}, 4px 4px 0px var(--bg-shadow, #0F0D0C);
+}
+
+/* --- Cards and containers ---------------------------------------------- */
+.bg-liftcard {
+  transition: transform .2s ease-out, box-shadow .2s ease-out;
+  will-change: transform;
+  transform: translateZ(0);
+}
+@media (hover: hover) and (pointer: fine) {
+  .bg-liftcard:hover {
+    transform: scale(1.012) translate3d(0, -3px, 0);
+    /* border accent slides from ink to brand amber */
+    box-shadow: 6px 6px 0px ${GOLD}, 9px 9px 0px var(--bg-shadow, #0F0D0C);
+  }
+}
+.bg-liftcard:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px ${GOLD}, 6px 6px 0px var(--bg-shadow, #0F0D0C);
+}
+
+/* --- Hero mascot card --------------------------------------------------- */
+/* With a compiled Tailwind config this is
+   shadow-[6px_6px_0px_#F59E0B,8px_8px_0px_#000] hover:-translate-y-1 hover:scale-[1.01] */
+.bg-card {
+  box-shadow: 6px 6px 0px ${GOLD}, 8px 8px 0px ${INK};
+  transition: transform .2s ease-out, box-shadow .2s ease-out;
+  will-change: transform;
+  transform: translateZ(0);
+}
+@media (hover: hover) and (pointer: fine) {
+  .bg-card:hover {
+    transform: scale(1.01) translate3d(0, -4px, 0);
+    box-shadow: 8px 10px 0px ${GOLD}, 11px 13px 0px ${INK}, 0 18px 34px rgba(15,13,12,.26);
+  }
+}
+.bg-card:active { transform: scale(.997) translate3d(0, 1px, 0); transition-duration: .09s; }
+.bg-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px ${GOLD}, 6px 6px 0px ${GOLD}, 8px 8px 0px ${INK};
+}
+
+/* --- Tabs and toggles --------------------------------------------------- */
+.bg-tab {
+  transition: background-color .15s ease-out, color .15s ease-out,
+              transform .18s cubic-bezier(.34,1.56,.64,1);
+  will-change: transform;
+}
+.bg-tab[data-active="true"] { transform: translate3d(0, -2px, 0); }
+@media (hover: hover) and (pointer: fine) {
+  .bg-tab:hover { transform: translate3d(0, -1px, 0); }
+}
+.bg-tab:active { transform: translate3d(0, 1px, 0); transition-duration: .08s; }
+
+/* --- Meme maker: column widths, focus tint, press ----------------------- */
+.mm-col-left, .mm-col-right { width: 100%; }
+@media (min-width: 768px) {
+  .mm-col-left { width: 60%; }
+  .mm-col-right { width: 40%; }
+}
+.mm-input:focus { outline: none; background: #fef9c3 !important; }
+
+/* --- Meme maker: template tilt, showcase lift, re-roll wobble ----------- */
+.mm-tpl { transition: transform .15s ease-out, box-shadow .15s ease-out, outline-color .15s ease-out; will-change: transform; }
+@media (hover: hover) and (pointer: fine) {
+  .mm-tpl[data-active="false"]:hover {
+    transform: rotate(1deg) translate(-1px, -1px);
+    outline: 3px solid #F59E0B;
+    outline-offset: -1px;
+  }
+}
+.mm-tpl:active { transform: translate(2px, 2px) !important; box-shadow: none !important; }
+
+.mm-show { transition: transform .15s ease-out, box-shadow .15s ease-out; will-change: transform; }
+@media (hover: hover) and (pointer: fine) {
+  .mm-show:hover { transform: translateY(-4px); box-shadow: 3px 3px 0px #000; }
+}
+.mm-show:active { transform: translateY(0); box-shadow: 1px 1px 0px #000; }
+
+@keyframes mmWobble {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  18%      { transform: rotate(-2deg) scale(1.02); }
+  42%      { transform: rotate(2deg) scale(1.015); }
+  68%      { transform: rotate(-1.2deg) scale(1.005); }
+  86%      { transform: rotate(.6deg) scale(1); }
+}
+.mm-wobble { animation: mmWobble .6s ease-in-out 1; }
+
+/* --- Meme maker: flat 3px shadow, presses into the shadow --------------- */
+.mm-press { transition: transform .12s ease-out, box-shadow .12s ease-out, filter .15s ease-out; will-change: transform; }
+@media (hover: hover) and (pointer: fine) { .mm-press:hover { filter: brightness(1.04); } }
+.mm-press:active { transform: translate(2px, 2px) !important; box-shadow: none !important; }
+.mm-press:focus-visible { outline: none; box-shadow: 0 0 0 3px ${GOLD}, 3px 3px 0px #000; }
+
+/* --- Copy feedback pulse ------------------------------------------------ */
+@keyframes bgCopyPulse {
+  0%   { transform: scale(.95); }
+  45%  { transform: scale(1.055); }
+  100% { transform: scale(1); }
+}
+.bg-copied { animation: bgCopyPulse .34s ease-out; }
+@keyframes bgBadgeIn {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+.bg-badge-in { animation: bgBadgeIn .2s ease-out both; }
+
+/* --- Hero mascot card click indicator ----------------------------------- */
+@keyframes bgFloatPop {
+  0%   { transform: translate(-50%, 0) scale(.85); opacity: 0; }
+  18%  { transform: translate(-50%, -14px) scale(1.06); opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translate(-50%, -86px) scale(1); opacity: 0; }
+}
+.bg-floatpop { animation: bgFloatPop 1.1s cubic-bezier(.22,.9,.3,1) forwards; }
+
+/* --- Nav links ---------------------------------------------------------- */
+.bg-nav-link {
+  position: relative;
+  transition: color .15s ease-out, transform .15s ease-out;
+  will-change: transform;
+}
+.bg-nav-link::after {
+  content:""; position:absolute; left:0; right:100%; bottom:-3px; height:3px;
+  background: ${GOLD}; transition: right .18s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .bg-nav-link:hover { transform: translate3d(0,-1px,0); }
+  .bg-nav-link:hover::after { right: 0; }
+}
+.bg-nav-link:focus-visible { outline: none; }
+.bg-nav-link:focus-visible::after { right: 0; }
+
+:focus-visible { outline: 3px solid ${GOLD}; outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-marquee-track, .bg-bob, .bg-pop, .bg-toast, .bg-tabin, .bg-shake, .bg-flash,
+  .bg-copied, .bg-badge-in { animation: none !important; }
+  .bg-press, .bg-liftcard, .bg-card, .bg-tab, .bg-nav-link, .mm-press, .mm-tpl, .mm-show { transition-duration: .01ms !important; }
+  .mm-wobble { animation: none !important; }
+  .bg-press:hover, .bg-card:hover, .bg-liftcard:hover, .bg-tab:hover { transform: none; }
+  .bg-floatpop { animation-duration: .01s; }
+}
+`;
+  function XLogo({ size = 16, color = "currentColor", ...rest }) {
+    return /* @__PURE__ */ React.createElement(
+      "svg",
+      {
+        width: size,
+        height: size,
+        viewBox: "0 0 24 24",
+        fill: color,
+        "aria-hidden": true,
+        style: { display: "block" },
+        ...rest
+      },
+      /* @__PURE__ */ React.createElement("path", { d: "M17.53 3h3.19l-6.97 7.97L22 21h-6.4l-5.01-6.55L4.85 21H1.66l7.46-8.52L2 3h6.56l4.53 5.99L17.53 3Zm-1.12 16.07h1.77L7.68 4.83H5.79l10.62 14.24Z" })
+    );
+  }
+  const hardShadow = (color = INK, x = 4, y = 4) => `${x}px ${y}px 0px ${color}`;
+  function Panel({ t, children, className = "", style = {}, tone = "panel", lift = false, ...rest }) {
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `${lift ? "bg-liftcard " : ""}${className}`,
+        style: {
+          background: tone === "alt" ? t.panelAlt : t.panel,
+          border: `4px solid ${t.border}`,
+          boxShadow: hardShadow(t.shadow, 6, 6),
+          ...style
+        },
+        ...rest
+      },
+      children
+    );
+  }
+  function ComicButton({
+    t,
+    children,
+    variant = "gold",
+    as = "button",
+    className = "",
+    style = {},
+    ...rest
+  }) {
+    const Tag = as;
+    const skins = {
+      gold: { background: GOLD, color: INK, border: INK },
+      green: { background: GREEN, color: INK, border: INK },
+      dark: { background: INK, color: "#F4EBD9", border: INK },
+      ghost: { background: t.panel, color: t.text, border: t.border }
+    };
+    const s = skins[variant] || skins.gold;
+    return /* @__PURE__ */ React.createElement(
+      Tag,
+      {
+        className: `bg-display bg-press inline-flex items-center justify-center gap-2 px-6 py-3 text-lg uppercase ${className}`,
+        style: {
+          background: s.background,
+          color: s.color,
+          border: `4px solid ${s.border}`,
+          boxShadow: hardShadow(t.shadow, 5, 5),
+          cursor: "pointer",
+          ...style
+        },
+        ...rest
+      },
+      children
+    );
+  }
+  function SectionTitle({ t, kicker, children }) {
+    return /* @__PURE__ */ React.createElement("div", { className: "mb-8" }, kicker ? /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "bg-mono mb-2 inline-block px-2 py-1 text-xs font-bold",
+        style: { background: GREEN, color: INK, border: `3px solid ${t.border}` }
+      },
+      kicker
+    ) : null, /* @__PURE__ */ React.createElement(
+      "h2",
+      {
+        className: "bg-display text-4xl leading-none md:text-6xl",
+        style: {
+          color: t.text,
+          textShadow: `4px 4px 0px ${t.text === "#0F0D0C" ? GOLD : AMBER}`
+        }
+      },
+      children
+    ));
+  }
+  function Halftone({ t, opacity = 1 }) {
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        "aria-hidden": true,
+        className: "pointer-events-none absolute inset-0",
+        style: {
+          opacity,
+          backgroundImage: `radial-gradient(${t.dot} 1.4px, transparent 1.5px)`,
+          backgroundSize: "9px 9px"
+        }
+      }
+    );
+  }
+  const CHAIN_PTS = [
+    [145, 303],
+    [160, 315],
+    [174, 324],
+    [188, 330],
+    [203, 333],
+    [217, 333],
+    [232, 330],
+    [246, 324],
+    [260, 315],
+    [275, 303]
+  ];
+  function BengrollScene({ level = 0, balance = "0", room, className = "" }) {
+    const rich = level >= 3;
+    const roomRich = room ? room === "gold" : rich;
+    const chain = level >= 1;
+    const cash = level >= 2;
+    const iced = level >= 3;
+    const wall = roomRich ? "#3C2B0C" : "#EFE3CE";
+    const wallStripe = roomRich ? "#4B3711" : "#E5D6BA";
+    const stain = roomRich ? "#5C4413" : "#D8C6A4";
+    const wood = roomRich ? "#6B4A12" : "#8A5A32";
+    const floorC = roomRich ? "#5A420F" : "#B6A088";
+    const fur = rich ? "#E08B33" : "#C97B3C";
+    const furMid = rich ? "#F0AB5E" : "#D89055";
+    const furDark = rich ? "#9A5A12" : "#8B5A2B";
+    const cream = rich ? "#FBEBD2" : "#F1DFC3";
+    const pink = "#E9A2A0";
+    const eyeGreen = "#7BC24A";
+    const eyeGreenD = "#4E8B2A";
+    const goldA = "#F6C453";
+    const goldB = "#D99A14";
+    return /* @__PURE__ */ React.createElement(
+      "svg",
+      {
+        viewBox: "0 0 420 420",
+        className,
+        role: "img",
+        "aria-label": `Bengroll the Bengal cat, ${LEVELS[level].title}`,
+        style: { display: "block", width: "100%", height: "auto" }
+      },
+      /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("clipPath", { id: "bgFrameClip" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "420", height: "420" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "bgGoldGrad", x1: "0", y1: "0", x2: "1", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#FDE9A9" }), /* @__PURE__ */ React.createElement("stop", { offset: "45%", stopColor: goldA }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: goldB })), /* @__PURE__ */ React.createElement("linearGradient", { id: "bgFurGrad", x1: "0", y1: "0", x2: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: furMid }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: fur })), /* @__PURE__ */ React.createElement("pattern", { id: "bgHalf", width: "7", height: "7", patternUnits: "userSpaceOnUse" }, /* @__PURE__ */ React.createElement("circle", { cx: "1.7", cy: "1.7", r: "1.05", fill: "rgba(15,13,12,.16)" }))),
+      /* @__PURE__ */ React.createElement("g", { clipPath: "url(#bgFrameClip)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "420", height: "420", fill: wall }), [8, 46, 84, 122, 160, 198, 236, 274, 312, 350, 388].map((x) => /* @__PURE__ */ React.createElement("rect", { key: x, x, y: "0", width: "13", height: "352", fill: wallStripe })), [
+        "M46 34 q14 -10 24 4 q10 14 -4 20 q-18 6 -22 -8 Z",
+        "M356 46 q16 -8 22 8 q4 16 -12 18 q-18 0 -16 -14 Z",
+        "M22 236 q18 -8 22 8 q2 14 -14 14 q-14 -2 -8 -22 Z",
+        "M382 268 q16 -6 18 10 q0 12 -14 10 q-12 -4 -4 -20 Z"
+      ].map((d, i) => /* @__PURE__ */ React.createElement("path", { key: i, d, fill: stain, opacity: ".85" })), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M100 0 L112 40 L96 62 L118 96",
+          fill: "none",
+          stroke: stain,
+          strokeWidth: "4",
+          strokeLinecap: "round"
+        }
+      ), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M300 0 L288 30 L306 52 L292 88",
+          fill: "none",
+          stroke: stain,
+          strokeWidth: "4",
+          strokeLinecap: "round"
+        }
+      ), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M330 0 L392 0 L384 58 L404 96 L360 78 L348 118 L324 48 Z",
+          fill: roomRich ? "#6B4E14" : "#DCCBAB",
+          stroke: INK,
+          strokeWidth: "4",
+          strokeLinejoin: "round"
+        }
+      ), /* @__PURE__ */ React.createElement("g", { transform: "rotate(-4 62 128)" }, /* @__PURE__ */ React.createElement("rect", { x: "20", y: "80", width: "84", height: "96", fill: wood, stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("rect", { x: "30", y: "90", width: "64", height: "76", fill: roomRich ? "#0B2E22" : "#C9BCA2", stroke: INK, strokeWidth: "3" }), roomRich ? /* @__PURE__ */ React.createElement(
+        "polyline",
+        {
+          points: "36,152 52,140 64,146 80,104",
+          fill: "none",
+          stroke: GREEN,
+          strokeWidth: "5",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }
+      ) : /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("ellipse", { cx: "62", cy: "132", rx: "18", ry: "20", fill: "none", opacity: "0" }), /* @__PURE__ */ React.createElement("path", { d: "M50 148 q12 -34 24 0 Z", fill: "#7A6B54" }), /* @__PURE__ */ React.createElement("circle", { cx: "62", cy: "118", r: "10", fill: "#7A6B54" }))), /* @__PURE__ */ React.createElement("g", { transform: "rotate(3 356 168)" }, /* @__PURE__ */ React.createElement("rect", { x: "322", y: "126", width: "70", height: "82", fill: wood, stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("rect", { x: "331", y: "135", width: "52", height: "64", fill: roomRich ? "#0B2E22" : "#C9BCA2", stroke: INK, strokeWidth: "3" }), /* @__PURE__ */ React.createElement("path", { d: "M346 186 q10 -30 22 0 Z", fill: roomRich ? GOLD : "#7A6B54" }), /* @__PURE__ */ React.createElement("circle", { cx: "357", cy: "168", r: "9", fill: roomRich ? GOLD : "#7A6B54" })), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "8", y: "34", width: "6", height: "26", fill: INK }), /* @__PURE__ */ React.createElement("path", { d: "M0 30 L34 30 L28 8 L6 8 Z", fill: roomRich ? GOLD : "#D9C7A6", stroke: INK, strokeWidth: "4", strokeLinejoin: "round" })), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "256", width: "96", height: "96", fill: wood, stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("line", { x1: "0", y1: "300", x2: "96", y2: "300", stroke: INK, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("circle", { cx: "66", cy: "278", r: "4", fill: INK }), /* @__PURE__ */ React.createElement("circle", { cx: "66", cy: "326", r: "4", fill: INK }), /* @__PURE__ */ React.createElement("rect", { x: "14", y: "196", width: "72", height: "60", rx: "6", fill: roomRich ? "#2B2118" : "#6E6357", stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("rect", { x: "24", y: "206", width: "42", height: "40", rx: "3", fill: roomRich ? GREEN : "#B9AE9B", stroke: INK, strokeWidth: "3" }), /* @__PURE__ */ React.createElement("line", { x1: "52", y1: "196", x2: "42", y2: "170", stroke: INK, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("line", { x1: "60", y1: "196", x2: "76", y2: "172", stroke: INK, strokeWidth: "4" })), cash ? /* @__PURE__ */ React.createElement("g", null, [0, 1, 2, 3].map((k) => /* @__PURE__ */ React.createElement(
+        "rect",
+        {
+          key: k,
+          x: "336",
+          y: 356 - k * 10,
+          width: "72",
+          height: "13",
+          rx: "2",
+          fill: k % 2 ? "#34D399" : GREEN,
+          stroke: INK,
+          strokeWidth: "3"
+        }
+      ))) : /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("path", { d: "M340 300 L412 300 L412 356 L340 356 Z", fill: roomRich ? "#6B4E14" : "#C39A6B", stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("path", { d: "M340 300 L358 284 L412 284", fill: "none", stroke: INK, strokeWidth: "5", strokeLinejoin: "round" })), /* @__PURE__ */ React.createElement("rect", { x: "0", y: "352", width: "420", height: "68", fill: floorC }), /* @__PURE__ */ React.createElement("line", { x1: "0", y1: "352", x2: "420", y2: "352", stroke: INK, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "420", height: "352", fill: "url(#bgHalf)", opacity: ".45" }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("path", { d: "M118 168 L96 44 L206 106 Z", fill: fur, stroke: INK, strokeWidth: "6", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M302 168 L324 44 L214 106 Z", fill: fur, stroke: INK, strokeWidth: "6", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M128 156 L110 68 L188 112 Z", fill: pink }), /* @__PURE__ */ React.createElement("path", { d: "M292 156 L310 68 L232 112 Z", fill: pink }), [
+        "M120 74 l10 46 M136 78 l8 42",
+        "M300 74 l-10 46 M284 78 l-8 42"
+      ].map((d, i) => /* @__PURE__ */ React.createElement("path", { key: i, d, stroke: "#FFF6E6", strokeWidth: "3.5", fill: "none", strokeLinecap: "round", opacity: ".9" })), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M60 420 C64 322 128 268 210 268 C292 268 356 322 360 420 Z",
+          fill: "url(#bgFurGrad)",
+          stroke: INK,
+          strokeWidth: "6",
+          strokeLinejoin: "round"
+        }
+      ), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M148 420 C150 342 176 300 210 300 C244 300 270 342 272 420 Z",
+          fill: cream
+        }
+      ), /* @__PURE__ */ React.createElement("ellipse", { cx: "210", cy: "186", rx: "102", ry: "92", fill: "url(#bgFurGrad)", stroke: INK, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("g", { stroke: furDark, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M180 118 q6 -32 2 -50" }), /* @__PURE__ */ React.createElement("path", { d: "M210 112 q4 -34 0 -52" }), /* @__PURE__ */ React.createElement("path", { d: "M240 118 q-6 -32 -2 -50" }), /* @__PURE__ */ React.createElement("path", { d: "M196 142 q14 -18 28 0" })), /* @__PURE__ */ React.createElement("g", { stroke: furDark, strokeWidth: "7", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M124 168 q-16 4 -22 12" }), /* @__PURE__ */ React.createElement("path", { d: "M120 196 q-18 2 -24 10" }), /* @__PURE__ */ React.createElement("path", { d: "M126 224 q-16 6 -20 14" }), /* @__PURE__ */ React.createElement("path", { d: "M296 168 q16 4 22 12" }), /* @__PURE__ */ React.createElement("path", { d: "M300 196 q18 2 24 10" }), /* @__PURE__ */ React.createElement("path", { d: "M294 224 q16 6 20 14" })), /* @__PURE__ */ React.createElement("ellipse", { cx: "210", cy: "234", rx: "66", ry: "46", fill: cream }), /* @__PURE__ */ React.createElement("path", { d: "M180 224 a20 18 0 1 0 60 0", fill: "none", stroke: "none" }), [
+        { cx: 168, hood: "M135 196 Q148 160 174 157 Q196 155 202 172 L202 142 L135 142 Z", lid: "M135 196 Q148 160 174 157 Q196 155 202 172" },
+        { cx: 252, hood: "M285 196 Q272 160 246 157 Q224 155 218 172 L218 142 L285 142 Z", lid: "M285 196 Q272 160 246 157 Q224 155 218 172" }
+      ].map(({ cx, hood, lid }) => /* @__PURE__ */ React.createElement("g", { key: cx }, /* @__PURE__ */ React.createElement("ellipse", { cx, cy: "184", rx: "31", ry: "29", fill: "#FFFFFF", stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("circle", { cx, cy: "188", r: "21", fill: eyeGreen }), /* @__PURE__ */ React.createElement("circle", { cx, cy: "188", r: "21", fill: "none", stroke: eyeGreenD, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("ellipse", { cx, cy: "189", rx: "9.5", ry: "12.5", fill: INK }), /* @__PURE__ */ React.createElement("circle", { cx: cx - 8, cy: "179", r: "6.2", fill: "#FFFFFF" }), /* @__PURE__ */ React.createElement("circle", { cx: cx + 9, cy: "197", r: "3", fill: "#FFFFFF", opacity: ".85" }), /* @__PURE__ */ React.createElement("path", { d: hood, fill: "url(#bgFurGrad)" }), /* @__PURE__ */ React.createElement("path", { d: lid, fill: "none", stroke: INK, strokeWidth: "5.5", strokeLinecap: "round" }))), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M134 146 q30 -14 56 4 M286 146 q-30 -14 -56 4",
+          stroke: furDark,
+          strokeWidth: "7",
+          fill: "none",
+          strokeLinecap: "round"
+        }
+      ), /* @__PURE__ */ React.createElement("path", { d: "M196 214 h28 q2 12 -14 20 q-16 -8 -14 -20 Z", fill: pink, stroke: INK, strokeWidth: "4.5", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "210", y1: "234", x2: "210", y2: "244", stroke: INK, strokeWidth: "4.5" }), rich ? /* @__PURE__ */ React.createElement("path", { d: "M188 248 q22 9 44 0", stroke: INK, strokeWidth: "5", fill: "none", strokeLinecap: "round" }) : /* @__PURE__ */ React.createElement("path", { d: "M186 250 q24 -14 48 0", stroke: INK, strokeWidth: "5", fill: "none", strokeLinecap: "round" }), [
+        [176, 232],
+        [166, 244],
+        [178, 254],
+        [244, 232],
+        [254, 244],
+        [242, 254]
+      ].map(([x, y], i) => /* @__PURE__ */ React.createElement("circle", { key: i, cx: x, cy: y, r: "2.6", fill: furDark })), /* @__PURE__ */ React.createElement("g", { stroke: "#FFFFFF", strokeWidth: "4", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M158 236 q-60 -16 -100 -34" }), /* @__PURE__ */ React.createElement("path", { d: "M156 248 q-64 -2 -108 8" }), /* @__PURE__ */ React.createElement("path", { d: "M160 260 q-58 14 -92 38" }), /* @__PURE__ */ React.createElement("path", { d: "M262 236 q60 -16 100 -34" }), /* @__PURE__ */ React.createElement("path", { d: "M264 248 q64 -2 108 8" }), /* @__PURE__ */ React.createElement("path", { d: "M260 260 q58 14 92 38" })), /* @__PURE__ */ React.createElement("g", { stroke: INK, strokeWidth: "1.6", fill: "none", strokeLinecap: "round", opacity: ".55" }, /* @__PURE__ */ React.createElement("path", { d: "M158 236 q-60 -16 -100 -34" }), /* @__PURE__ */ React.createElement("path", { d: "M156 248 q-64 -2 -108 8" }), /* @__PURE__ */ React.createElement("path", { d: "M262 236 q60 -16 100 -34" }), /* @__PURE__ */ React.createElement("path", { d: "M264 248 q64 -2 108 8" })), chain && !iced && /* @__PURE__ */ React.createElement("g", { className: "bg-pop" }, /* @__PURE__ */ React.createElement("path", { d: "M150 300 Q210 358 270 300", fill: "none", stroke: INK, strokeWidth: "15", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M150 300 Q210 358 270 300", fill: "none", stroke: "#C9A455", strokeWidth: "8", strokeLinecap: "round" }), CHAIN_PTS.map(([x, y], i) => /* @__PURE__ */ React.createElement(
+        "circle",
+        {
+          key: i,
+          cx: 150 + (x - 138) * 0.833,
+          cy: 300 + (y - 296) * 0.78,
+          r: "6",
+          fill: "#DDB65E",
+          stroke: INK,
+          strokeWidth: "3"
+        }
+      )), /* @__PURE__ */ React.createElement("circle", { cx: "210", cy: "352", r: "13", fill: "#DDB65E", stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "210", y: "359", textAnchor: "middle", fontSize: "17", fontFamily: "monospace", fontWeight: "700", fill: INK }, "$")), iced && /* @__PURE__ */ React.createElement("g", { className: "bg-pop" }, /* @__PURE__ */ React.createElement("path", { d: "M138 296 Q210 370 282 296", fill: "none", stroke: INK, strokeWidth: "30", strokeLinecap: "round" }), CHAIN_PTS.map(([x, y], i) => /* @__PURE__ */ React.createElement("g", { key: i }, /* @__PURE__ */ React.createElement(
+        "ellipse",
+        {
+          cx: x,
+          cy: y,
+          rx: i % 2 ? 13 : 16,
+          ry: i % 2 ? 15 : 12,
+          fill: "url(#bgGoldGrad)",
+          stroke: INK,
+          strokeWidth: "4",
+          transform: `rotate(${(i - 4.5) * 9} ${x} ${y})`
+        }
+      ), /* @__PURE__ */ React.createElement("circle", { cx: x, cy: y - 1, r: "2.9", fill: "#FFFFFF" }))), /* @__PURE__ */ React.createElement("path", { d: "M210 352 l5 14 -10 0 Z", fill: goldB, stroke: INK, strokeWidth: "3", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement(
+        "text",
+        {
+          x: "210",
+          y: "404",
+          textAnchor: "middle",
+          fontFamily: "'Lilita One', Impact, sans-serif",
+          fontSize: "62",
+          fill: "url(#bgGoldGrad)",
+          stroke: INK,
+          strokeWidth: "5",
+          paintOrder: "stroke"
+        },
+        "$"
+      ), [
+        [198, 376],
+        [210, 366],
+        [222, 388],
+        [206, 396]
+      ].map(([x, y], i) => /* @__PURE__ */ React.createElement("circle", { key: i, cx: x, cy: y, r: "2.8", fill: "#FFFFFF", opacity: ".95" }))), /* @__PURE__ */ React.createElement("g", null, cash && /* @__PURE__ */ React.createElement("g", { className: "bg-pop" }, [
+        [-38, 46, 292],
+        [-24, 58, 300],
+        [-11, 70, 308],
+        [2, 82, 316]
+      ].map(([rot, x, y], i) => /* @__PURE__ */ React.createElement("g", { key: i, transform: `rotate(${rot} ${x + 46} ${y + 30})` }, /* @__PURE__ */ React.createElement("rect", { x, y, width: "94", height: "58", rx: "3", fill: "#CFE3C4", stroke: INK, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("rect", { x: x + 6, y: y + 6, width: "82", height: "46", rx: "2", fill: "none", stroke: "#4E7A45", strokeWidth: "2.5" }), /* @__PURE__ */ React.createElement("circle", { cx: x + 47, cy: y + 29, r: "15", fill: "#B9D3AC", stroke: "#4E7A45", strokeWidth: "2.5" }), /* @__PURE__ */ React.createElement(
+        "text",
+        {
+          x: x + 14,
+          y: y + 20,
+          fontFamily: "monospace",
+          fontSize: "13",
+          fontWeight: "700",
+          fill: "#2F5A2A"
+        },
+        "100"
+      )))), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M74 420 C70 360 94 336 128 338 C160 340 176 366 174 420 Z",
+          fill: "url(#bgFurGrad)",
+          stroke: INK,
+          strokeWidth: "6",
+          strokeLinejoin: "round"
+        }
+      ), /* @__PURE__ */ React.createElement("g", { stroke: INK, strokeWidth: "4.5", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M92 372 q22 -8 44 0" }), /* @__PURE__ */ React.createElement("path", { d: "M90 392 q24 -8 48 0" }), /* @__PURE__ */ React.createElement("path", { d: "M96 352 q18 -6 34 0" })), cash && [
+        ["#E23B5A", 100, 364],
+        ["#2F6FE0", 98, 384],
+        ["#2FB36F", 126, 388],
+        ["#E2B33B", 128, 366]
+      ].map(([c, x, y], i) => /* @__PURE__ */ React.createElement("g", { key: i, className: "bg-pop" }, /* @__PURE__ */ React.createElement("rect", { x: x - 9, y: y - 7, width: "18", height: "14", rx: "3", fill: "url(#bgGoldGrad)", stroke: INK, strokeWidth: "3.5" }), /* @__PURE__ */ React.createElement("circle", { cx: x, cy: y, r: "4", fill: c, stroke: INK, strokeWidth: "2.5" }))), iced && /* @__PURE__ */ React.createElement("g", { className: "bg-pop" }, /* @__PURE__ */ React.createElement("path", { d: "M74 398 q26 16 56 6", fill: "none", stroke: INK, strokeWidth: "16", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M74 398 q26 16 56 6", fill: "none", stroke: "url(#bgGoldGrad)", strokeWidth: "10", strokeLinecap: "round" }), [86, 100, 114].map((x, i) => /* @__PURE__ */ React.createElement("circle", { key: x, cx: x, cy: 405 - i * 0.5, r: "2.6", fill: "#FFFFFF" })))), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("g", { transform: "rotate(5 318 320)", className: level < 3 ? "bg-bob" : "" }, /* @__PURE__ */ React.createElement("rect", { x: "282", y: "248", width: "76", height: "128", rx: "12", fill: "#2B2F36", stroke: INK, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("rect", { x: "290", y: "256", width: "60", height: "112", rx: "7", fill: level >= 2 ? "#062E24" : "#1C222B", stroke: INK, strokeWidth: "3" }), /* @__PURE__ */ React.createElement("rect", { x: "296", y: "258", width: "26", height: "20", rx: "7", fill: "#2B2F36", stroke: INK, strokeWidth: "3" }), /* @__PURE__ */ React.createElement(
+        "text",
+        {
+          x: "320",
+          y: "304",
+          textAnchor: "middle",
+          fontSize: "14",
+          fontFamily: "monospace",
+          fontWeight: "700",
+          fill: level >= 1 ? GREEN : "#9CA3AF"
+        },
+        level >= 1 ? "+\u221E%" : "-98%"
+      ), /* @__PURE__ */ React.createElement("text", { x: "320", y: "322", textAnchor: "middle", fontSize: "9", fontFamily: "monospace", fill: level >= 1 ? "#D1FAE5" : "#9CA3AF" }, "$", balance), /* @__PURE__ */ React.createElement("g", { stroke: "#F2F5F8", strokeWidth: "2.6", fill: "none", opacity: ".92" }, /* @__PURE__ */ React.createElement("polyline", { points: "290,274 312,292 300,308 330,330 318,348 350,360" }), /* @__PURE__ */ React.createElement("polyline", { points: "344,258 326,282 350,300" }), /* @__PURE__ */ React.createElement("polyline", { points: "312,292 334,278 350,286" }), /* @__PURE__ */ React.createElement("polyline", { points: "300,308 284,322" }))), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M246 420 C244 362 268 338 300 340 C334 342 350 366 348 420 Z",
+          fill: "url(#bgFurGrad)",
+          stroke: INK,
+          strokeWidth: "6",
+          strokeLinejoin: "round"
+        }
+      ), /* @__PURE__ */ React.createElement("g", { stroke: INK, strokeWidth: "4.5", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M264 374 q22 -8 44 0" }), /* @__PURE__ */ React.createElement("path", { d: "M262 394 q24 -8 48 0" }), /* @__PURE__ */ React.createElement("path", { d: "M270 354 q18 -6 34 0" })), !cash && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("path", { d: "M330 360 q10 16 4 34", fill: "none", stroke: INK, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("circle", { cx: "334", cy: "398", r: "9", fill: "none", stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("path", { d: "M342 398 h16 l0 8", fill: "none", stroke: INK, strokeWidth: "5", strokeLinecap: "round" })), iced && /* @__PURE__ */ React.createElement("g", { className: "bg-pop" }, /* @__PURE__ */ React.createElement("path", { d: "M254 396 q30 18 62 4", fill: "none", stroke: INK, strokeWidth: "18", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M254 396 q30 18 62 4", fill: "none", stroke: "url(#bgGoldGrad)", strokeWidth: "11", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "286", cy: "405", r: "12", fill: "url(#bgGoldGrad)", stroke: INK, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("circle", { cx: "286", cy: "405", r: "5", fill: "#FFFFFF", stroke: INK, strokeWidth: "2.5" })))), [
+        [58, 172, 0],
+        [366, 226, 0.6],
+        [40, 300, 1.1],
+        [388, 120, 1.6]
+      ].map(
+        ([x, y, d], i) => level >= 1 || i < 1 ? /* @__PURE__ */ React.createElement(
+          "path",
+          {
+            key: i,
+            d: `M${x} ${y - 13} l5 9 9 4 -9 4 -5 9 -5 -9 -9 -4 9 -4 Z`,
+            fill: iced ? "#FFFFFF" : GOLD,
+            stroke: INK,
+            strokeWidth: "3",
+            style: { animation: `bgSparkle 2.4s ease-in-out ${d}s infinite` }
+          }
+        ) : null
+      ), roomRich && /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "420", height: "420", fill: GOLD, opacity: ".1" })),
+      /* @__PURE__ */ React.createElement("rect", { x: "3.5", y: "3.5", width: "413", height: "413", fill: "none", stroke: INK, strokeWidth: "7" })
+    );
+  }
+  function HeroMascotCard({ t, src = CONFIG.mascot, onClickCard }) {
+    const [loaded, setLoaded] = useState(false);
+    const [failed, setFailed] = useState(false);
+    const [pops, setPops] = useState([]);
+    const idRef = useRef(0);
+    const handleClick = (e) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      idRef.current += 1;
+      const id = idRef.current;
+      setPops((p) => [
+        ...p.slice(-6),
+        {
+          id,
+          left: ((e.clientX || r.left + r.width / 2) - r.left) / r.width * 100,
+          top: ((e.clientY || r.top + r.height / 2) - r.top) / r.height * 100
+        }
+      ]);
+      setTimeout(() => setPops((p) => p.filter((x) => x.id !== id)), 1100);
+      onClickCard == null ? void 0 : onClickCard();
+    };
+    const stickers = [
+      { text: "100% REAL CHAINS", cls: "-bottom-4 -left-3 sm:-left-6", rot: -7, bg: GREEN },
+      { text: "MANIFESTED", cls: "-right-3 top-16 sm:-right-6", rot: 8, bg: GOLD },
+      { text: "0% TAX", cls: "-left-3 top-1/3 sm:-left-6 hidden sm:block", rot: -12, bg: t.panel }
+    ];
+    return /* @__PURE__ */ React.createElement("div", { className: "relative mx-auto w-full max-w-lg" }, /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        "aria-hidden": true,
+        className: "pointer-events-none absolute -inset-6 sm:-inset-10",
+        style: {
+          background: "radial-gradient(60% 55% at 42% 40%, rgba(245,158,11,.42), rgba(245,158,11,0) 70%), radial-gradient(55% 50% at 68% 72%, rgba(16,185,129,.3), rgba(16,185,129,0) 72%)"
+        }
+      }
+    ), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        role: "button",
+        tabIndex: 0,
+        onClick: handleClick,
+        onKeyDown: (e) => (e.key === "Enter" || e.key === " ") && handleClick(e),
+        "aria-label": "Bengroll cover art \u2014 tap to stack",
+        className: "bg-card relative cursor-pointer rounded-2xl p-3",
+        style: { background: t.panel, border: `4px solid ${t.border}` }
+      },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "relative overflow-hidden rounded-xl",
+          style: { border: `3px solid ${t.border}`, background: t.panelAlt, aspectRatio: "1 / 1" }
+        },
+        !failed ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
+          "img",
+          {
+            src,
+            alt: "Bengroll, an iced-out Bengal cat at a high-limit table holding a fan of hundred dollar bills",
+            width: 1254,
+            height: 1254,
+            loading: "eager",
+            decoding: "async",
+            onLoad: () => setLoaded(true),
+            onError: () => setFailed(true),
+            className: "absolute inset-0 h-full w-full select-none rounded-xl object-cover object-center",
+            style: {
+              opacity: loaded ? 1 : 0,
+              transition: "opacity .35s ease",
+              /* square source in a square window: fills without distortion */
+              aspectRatio: "1 / 1"
+            },
+            draggable: false
+          }
+        ), !loaded && /* @__PURE__ */ React.createElement("div", { className: "absolute inset-0 flex items-center justify-center" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "loading the bengroll\u2026"))) : /* @__PURE__ */ React.createElement(BengrollScene, { level: 3, room: "dingy", balance: "88.3M" }),
+        /* @__PURE__ */ React.createElement(
+          "div",
+          {
+            "aria-hidden": true,
+            className: "pointer-events-none absolute inset-0",
+            style: {
+              backgroundImage: "radial-gradient(rgba(15,13,12,.45) 1.1px, transparent 1.2px)",
+              backgroundSize: "5px 5px",
+              mixBlendMode: "multiply",
+              opacity: 0.3
+            }
+          }
+        ),
+        /* @__PURE__ */ React.createElement("div", { "aria-hidden": true, className: "pointer-events-none absolute inset-0", style: { boxShadow: "inset 0 0 40px rgba(15,13,12,.4)" } }),
+        pops.map((p) => /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            key: p.id,
+            className: "bg-floatpop bg-display pointer-events-none absolute whitespace-nowrap px-2 py-1 text-lg",
+            style: {
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              background: GREEN,
+              color: INK,
+              border: `3px solid ${INK}`,
+              boxShadow: `3px 3px 0 ${INK}`
+            }
+          },
+          "+$10,000"
+        ))
+      ),
+      /* @__PURE__ */ React.createElement("div", { className: "mt-3 flex items-center justify-between gap-2 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "Issue #001 \xB7 Solana"), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: AMBER } }, "Tap to stack"))
+    ), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "bg-mono absolute left-1/2 top-0 z-20 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 font-bold",
+        style: {
+          transform: "translate(-50%, -55%)",
+          background: GOLD,
+          color: INK,
+          border: `3px solid ${INK}`,
+          boxShadow: `3px 3px 0 ${INK}`,
+          fontSize: "clamp(9px, 2.5vw, 12px)",
+          letterSpacing: ".02em"
+        }
+      },
+      "\u2726 BENGROLL #001 \u2014 PENTHOUSE EDITION \u2726"
+    ), stickers.map((st) => /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        key: st.text,
+        className: `bg-mono absolute z-20 px-2 py-1 text-xs font-bold ${st.cls}`,
+        style: {
+          background: st.bg,
+          color: st.bg === t.panel ? t.text : INK,
+          border: `3px solid ${t.border}`,
+          boxShadow: `3px 3px 0 ${t.shadow}`,
+          transform: `rotate(${st.rot}deg)`
+        }
+      },
+      st.text
+    )));
+  }
+  function useCashRegister(muted) {
+    const ctxRef = useRef(null);
+    return useCallback(() => {
+      if (muted) return;
+      try {
+        if (!ctxRef.current) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return;
+          ctxRef.current = new AC();
+        }
+        const ctx = ctxRef.current;
+        if (ctx.state === "suspended") ctx.resume();
+        const now = ctx.currentTime;
+        [1318.5, 1760].forEach((f, i) => {
+          const o = ctx.createOscillator();
+          const g = ctx.createGain();
+          o.type = "triangle";
+          o.frequency.setValueAtTime(f, now + i * 0.055);
+          g.gain.setValueAtTime(1e-4, now + i * 0.055);
+          g.gain.exponentialRampToValueAtTime(0.22, now + i * 0.055 + 0.01);
+          g.gain.exponentialRampToValueAtTime(1e-4, now + i * 0.055 + 0.5);
+          o.connect(g).connect(ctx.destination);
+          o.start(now + i * 0.055);
+          o.stop(now + i * 0.055 + 0.55);
+        });
+        const len = Math.floor(ctx.sampleRate * 0.09);
+        const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+        const src = ctx.createBufferSource();
+        const filt = ctx.createBiquadFilter();
+        const ng = ctx.createGain();
+        filt.type = "lowpass";
+        filt.frequency.value = 900;
+        ng.gain.value = 0.16;
+        src.buffer = buf;
+        src.connect(filt).connect(ng).connect(ctx.destination);
+        src.start(now);
+      } catch (e) {
+      }
+    }, [muted]);
+  }
+  function CopyCA({ t, compact = false }) {
+    const [copied, setCopied] = useState(false);
+    const timer = useRef(null);
+    useEffect(() => () => clearTimeout(timer.current), []);
+    const copy = async () => {
+      try {
+        await navigator.clipboard.writeText(CONFIG.contract);
+      } catch (e) {
+        const ta = document.createElement("textarea");
+        ta.value = CONFIG.contract;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      setCopied(true);
+      clearTimeout(timer.current);
+      timer.current = setTimeout(() => setCopied(false), 1800);
+    };
+    const short = compact ? `${CONFIG.contract.slice(0, 5)}\u2026${CONFIG.contract.slice(-4)}` : CONFIG.contract;
+    return /* @__PURE__ */ React.createElement("div", { className: "relative inline-block" }, /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        onClick: copy,
+        "aria-label": "Copy contract address",
+        className: `bg-mono bg-press flex items-center gap-2 px-3 py-2 text-xs font-bold ${compact ? "" : "text-sm"} ${copied ? "bg-copied" : ""}`,
+        style: {
+          background: copied ? GREEN : t.panel,
+          color: copied ? INK : t.text,
+          border: `4px solid ${t.border}`,
+          boxShadow: hardShadow(t.shadow, 4, 4),
+          maxWidth: "100%",
+          cursor: "pointer"
+        }
+      },
+      copied ? /* @__PURE__ */ React.createElement(Check, { size: 15, strokeWidth: 3 }) : /* @__PURE__ */ React.createElement(Copy, { size: 15, strokeWidth: 3 }),
+      /* @__PURE__ */ React.createElement("span", { className: "truncate" }, copied ? "Copied to clipboard!" : short)
+    ), copied && /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "bg-mono bg-badge-in absolute left-1/2 top-full z-30 mt-2 whitespace-nowrap px-2 py-1 text-xs font-bold",
+        style: {
+          background: GOLD,
+          color: INK,
+          border: `3px solid ${INK}`,
+          boxShadow: hardShadow(INK, 3, 3),
+          transform: "translateX(-50%)"
+        }
+      },
+      "CA secured \u2726 larp responsibly"
+    ));
+  }
+  const TICKER_PHRASES = [
+    "9 LIVES 0 LOSSES",
+    "FAKE CHAIN TO REAL BENGROLL",
+    "LARPED INTO REALITY",
+    "$BENGROLL ON SOLANA",
+    "CRACKED SCREEN, CLEAN CHART",
+    "MANIFEST THE BAG"
+  ];
+  function TickerRibbon({ t, tone = GOLD, angle = -1.4 }) {
+    const run = [...TICKER_PHRASES, ...TICKER_PHRASES];
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "relative w-full overflow-hidden",
+        style: {
+          background: tone,
+          borderTop: `4px solid ${INK}`,
+          borderBottom: `4px solid ${INK}`,
+          transform: `rotate(${angle}deg)`
+        }
+      },
+      /* @__PURE__ */ React.createElement("div", { className: "bg-marquee-track flex w-max whitespace-nowrap py-2" }, [0, 1].map((dup) => /* @__PURE__ */ React.createElement("div", { key: dup, className: "flex" }, run.map((p, i) => /* @__PURE__ */ React.createElement(
+        "span",
+        {
+          key: `${dup}-${i}`,
+          className: "bg-display px-5 text-lg uppercase md:text-2xl",
+          style: { color: INK }
+        },
+        p,
+        " ",
+        /* @__PURE__ */ React.createElement("span", { style: { color: "#FFF8EA" } }, "\u2726")
+      )))))
+    );
+  }
+  function ComeUpRoom({ t, muted, setMuted }) {
+    const [clicks, setClicks] = useState(0);
+    const [bits, setBits] = useState([]);
+    const [toast, setToast] = useState(null);
+    const [shake, setShake] = useState(false);
+    const [flash, setFlash] = useState(false);
+    const prevLevel = useRef(0);
+    const ching = useCashRegister(muted);
+    const idRef = useRef(0);
+    const level = levelFor(clicks);
+    const gate = nextGate(clicks);
+    const pct = gate ? Math.min(100, Math.round((clicks - level.min) / (gate - level.min) * 100)) : 100;
+    useEffect(() => {
+      if (level.id > prevLevel.current) {
+        setToast(level);
+        if (level.id === 3) {
+          setFlash(true);
+          setTimeout(() => setFlash(false), 950);
+        }
+        const to = setTimeout(() => setToast(null), 2600);
+        prevLevel.current = level.id;
+        return () => clearTimeout(to);
+      }
+      prevLevel.current = level.id;
+    }, [level]);
+    const larp = () => {
+      setClicks((c) => c + 1);
+      ching();
+      setShake(true);
+      setTimeout(() => setShake(false), 220);
+      if (navigator.vibrate) navigator.vibrate(12);
+      const n = level.id >= 3 ? 4 : level.id >= 2 ? 3 : 2;
+      const spawn = Array.from({ length: n }).map(() => {
+        idRef.current += 1;
+        return {
+          id: idRef.current,
+          left: 12 + Math.random() * 76,
+          dx: `${Math.round(Math.random() * 130 - 65)}px`,
+          rot: `${Math.round(Math.random() * 140 - 70)}deg`,
+          dur: 1.1 + Math.random() * 0.7,
+          glyph: level.id >= 3 ? Math.random() > 0.5 ? "\u{1F4B5}" : "\u{1F48E}" : "\u{1F4B5}"
+        };
+      });
+      setBits((b) => [...b.slice(-30), ...spawn]);
+      setTimeout(() => {
+        const ids = new Set(spawn.map((s) => s.id));
+        setBits((b) => b.filter((x) => !ids.has(x.id)));
+      }, 2e3);
+    };
+    return /* @__PURE__ */ React.createElement("div", { id: "come-up", className: "relative" }, /* @__PURE__ */ React.createElement(Panel, { t, className: "relative overflow-hidden p-4 md:p-6" }, /* @__PURE__ */ React.createElement("div", { className: "mb-4 flex flex-wrap items-center justify-between gap-3" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "Room status"), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "bg-display text-2xl leading-none md:text-3xl",
+        style: { color: level.id === 3 ? AMBER : t.text }
+      },
+      level.title
+    ), /* @__PURE__ */ React.createElement("div", { className: "bg-mono mt-1 text-xs", style: { color: t.dim } }, level.line)), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "bg-mono px-3 py-2 text-sm font-bold",
+        style: { background: GREEN, color: INK, border: `4px solid ${INK}`, boxShadow: hardShadow(INK, 4, 4) }
+      },
+      clicks,
+      " LARPS"
+    ), /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        onClick: () => setMuted((m) => !m),
+        "aria-label": muted ? "Unmute sound effects" : "Mute sound effects",
+        className: "bg-press p-2",
+        style: {
+          background: muted ? t.panelAlt : GOLD,
+          color: INK,
+          border: `4px solid ${t.border}`,
+          boxShadow: hardShadow(t.shadow, 4, 4),
+          cursor: "pointer"
+        }
+      },
+      muted ? /* @__PURE__ */ React.createElement(VolumeX, { size: 18, strokeWidth: 3 }) : /* @__PURE__ */ React.createElement(Volume2, { size: 18, strokeWidth: 3 })
+    ))), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `relative ${shake ? "bg-shake" : ""}`,
+        style: { border: `4px solid ${t.border}`, background: t.panelAlt }
+      },
+      /* @__PURE__ */ React.createElement(BengrollScene, { level: level.id, balance: fakeBalance(clicks) }),
+      /* @__PURE__ */ React.createElement("div", { className: "pointer-events-none absolute inset-0 overflow-hidden" }, bits.map((b) => /* @__PURE__ */ React.createElement(
+        "span",
+        {
+          key: b.id,
+          className: "absolute text-2xl",
+          style: {
+            left: `${b.left}%`,
+            bottom: "16%",
+            "--dx": b.dx,
+            "--rot": b.rot,
+            animation: `bgFloatUp ${b.dur}s ease-out forwards`
+          }
+        },
+        b.glyph
+      ))),
+      level.id >= 3 && /* @__PURE__ */ React.createElement("div", { className: "pointer-events-none absolute inset-0 overflow-hidden" }, Array.from({ length: 14 }).map((_, i) => /* @__PURE__ */ React.createElement(
+        "span",
+        {
+          key: i,
+          className: "absolute text-xl",
+          style: {
+            left: `${(i * 7.3 + 3) % 96}%`,
+            top: "-10%",
+            animation: `bgRain ${2.6 + i % 5 * 0.45}s linear ${i * 0.22}s infinite`
+          }
+        },
+        i % 3 === 0 ? "\u{1F48E}" : "\u{1F4B5}"
+      ))),
+      flash && /* @__PURE__ */ React.createElement("div", { className: "bg-flash pointer-events-none absolute inset-0", style: { background: GOLD } }),
+      toast && /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "bg-toast absolute left-1/2 top-4 z-20 -translate-x-1/2 px-4 py-2 text-center",
+          style: { background: GREEN, border: `4px solid ${INK}`, boxShadow: hardShadow(INK, 5, 5) }
+        },
+        /* @__PURE__ */ React.createElement("div", { className: "bg-display text-lg leading-none", style: { color: INK } }, toast.title),
+        toast.unlock && /* @__PURE__ */ React.createElement("div", { className: "bg-mono text-xs font-bold", style: { color: INK } }, toast.unlock)
+      )
+    ), /* @__PURE__ */ React.createElement("div", { className: "mt-4" }, /* @__PURE__ */ React.createElement("div", { className: "bg-mono mb-1 flex justify-between text-xs font-bold", style: { color: t.dim } }, /* @__PURE__ */ React.createElement("span", null, gate ? `Next unlock at ${gate} larps` : "Ceiling removed. Keep rolling."), /* @__PURE__ */ React.createElement("span", null, pct, "%")), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        style: { border: `4px solid ${t.border}`, background: t.panelAlt, height: 22, overflow: "hidden" },
+        role: "progressbar",
+        "aria-valuenow": pct,
+        "aria-valuemin": 0,
+        "aria-valuemax": 100
+      },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          style: {
+            width: "100%",
+            height: "100%",
+            transform: `scaleX(${pct / 100})`,
+            transformOrigin: "left center",
+            willChange: "transform",
+            background: level.id === 3 ? `linear-gradient(90deg, ${GOLD}, ${GREEN}, ${GOLD})` : GOLD,
+            backgroundSize: "200% 100%",
+            animation: level.id === 3 ? "bgSweep 2.4s linear infinite" : void 0,
+            transition: "transform .28s cubic-bezier(.34,1.56,.64,1)"
+          }
+        }
+      )
+    ), /* @__PURE__ */ React.createElement(
+      ComicButton,
+      {
+        t,
+        variant: level.id >= 3 ? "green" : "gold",
+        onClick: larp,
+        className: "mt-4 w-full text-xl md:text-2xl"
+      },
+      /* @__PURE__ */ React.createElement(Sparkles, { size: 22, strokeWidth: 3 }),
+      "Click to larp / stack bengroll"
+    ), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-3 text-center text-xs", style: { color: t.dim } }, "Counter is local to your session. Nothing here is a balance, a promise, or financial advice."))));
+  }
+  const TWEETS = [
+    { h: "02:14", t: "down bad but the vision is up only. bengal instincts never miss.", likes: "3", era: 0 },
+    { h: "09:41", t: "just added at these levels \u{1FAE1} (i have $6 and a cracked screen)", likes: "11", era: 0 },
+    { h: "13:07", t: "my chain is real. my bag is real. my wallpaper is peeling. two truths.", likes: "412", era: 1 },
+    { h: "18:22", t: "told you i was 8 figures. nobody asked which side of the decimal.", likes: "6,204", era: 1 },
+    { h: "21:55", t: "the larp became load-bearing. penthouse acquired. 9 lives, 0 losses.", likes: "88,301", era: 2 }
+  ];
+  const VAULT = [
+    { name: "Bengroll PFP cutout", meta: "SVG \xB7 transparent", icon: Sparkles },
+    { name: "Broke-room meme template", meta: "PNG \xB7 1200\xD71200", icon: Smartphone },
+    { name: "Cracked phone sticker pack", meta: "ZIP \xB7 12 stickers", icon: Download },
+    { name: "Timeline banner set", meta: "PNG \xB7 1500\xD7500", icon: TrendingUp }
+  ];
+  function CrackedPhone({ t }) {
+    const [tab, setTab] = useState("chart");
+    const tabs = [
+      { id: "chart", label: "Chart", icon: LineChart },
+      { id: "timeline", label: "Timeline", icon: XLogo },
+      { id: "vault", label: "Larp Vault", icon: Download }
+    ];
+    const downloadPfp = () => {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" width="420" height="420"><rect width="420" height="420" fill="${GOLD}"/><text x="210" y="230" font-family="monospace" font-size="42" font-weight="700" text-anchor="middle" fill="${INK}">BENGROLL</text></svg>`;
+      const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "bengroll-pfp.svg";
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+    return /* @__PURE__ */ React.createElement(Panel, { t, className: "mx-auto w-full max-w-md p-3" }, /* @__PURE__ */ React.createElement("div", { style: { background: INK, border: `4px solid ${INK}`, padding: 10 } }, /* @__PURE__ */ React.createElement("div", { className: "mb-2 flex items-center justify-between px-1" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: "#9CA3AF" } }, "BENGROLL OS 9.1"), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: GREEN } }, "\u25AE\u25AE\u25AE 4%")), /* @__PURE__ */ React.createElement("div", { className: "flex gap-1", role: "tablist", "aria-label": "Phone screens" }, tabs.map((x) => {
+      const active = tab === x.id;
+      return /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          key: x.id,
+          onClick: () => setTab(x.id),
+          role: "tab",
+          "aria-selected": active,
+          "data-active": active,
+          className: "bg-tab bg-mono flex flex-1 items-center justify-center gap-1 px-2 py-2 text-xs font-bold",
+          style: {
+            background: active ? GOLD : "#2A2420",
+            color: active ? INK : "#C9BFB2",
+            border: `3px solid ${INK}`,
+            borderBottom: active ? `3px solid ${GOLD}` : `3px solid ${INK}`,
+            cursor: "pointer"
+          }
+        },
+        /* @__PURE__ */ React.createElement(x.icon, { size: 13, strokeWidth: 3 }),
+        x.label
+      );
+    })), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "relative overflow-hidden",
+        style: { background: "#0B1220", border: `3px solid ${INK}`, minHeight: 320 }
+      },
+      /* @__PURE__ */ React.createElement(
+        "svg",
+        {
+          className: "pointer-events-none absolute inset-0 z-10 h-full w-full",
+          viewBox: "0 0 100 100",
+          preserveAspectRatio: "none",
+          "aria-hidden": true
+        },
+        /* @__PURE__ */ React.createElement("polyline", { points: "0,18 22,34 14,46 44,62 34,74 66,84 58,100", fill: "none", stroke: "#F9FAFB", strokeWidth: ".7", opacity: ".55" }),
+        /* @__PURE__ */ React.createElement("polyline", { points: "72,0 60,20 84,32 70,48 92,58", fill: "none", stroke: "#F9FAFB", strokeWidth: ".7", opacity: ".45" }),
+        /* @__PURE__ */ React.createElement("polyline", { points: "22,34 40,22 62,30", fill: "none", stroke: "#F9FAFB", strokeWidth: ".5", opacity: ".4" })
+      ),
+      /* @__PURE__ */ React.createElement("div", { key: tab, className: "bg-tabin relative z-0 p-3" }, tab === "chart" && /* @__PURE__ */ React.createElement("div", null, CONFIG.chartEmbed ? /* @__PURE__ */ React.createElement(
+        "iframe",
+        {
+          title: "Live chart",
+          src: CONFIG.chartEmbed,
+          style: { width: "100%", height: 290, border: "0" }
+        }
+      ) : /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-center justify-center", style: { minHeight: 290 } }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 260 130", className: "w-full" }, [
+        [10, 96, 22, GREEN],
+        [34, 84, 30, GREEN],
+        [58, 92, 18, "#EF4444"],
+        [82, 66, 40, GREEN],
+        [106, 74, 26, "#EF4444"],
+        [130, 44, 52, GREEN],
+        [154, 52, 34, "#EF4444"],
+        [178, 24, 62, GREEN],
+        [202, 30, 44, GREEN],
+        [226, 8, 74, GREEN]
+      ].map(([x, y, h, c], i) => /* @__PURE__ */ React.createElement("g", { key: i }, /* @__PURE__ */ React.createElement("line", { x1: x + 7, y1: y - 8, x2: x + 7, y2: y + h + 8, stroke: c, strokeWidth: "2" }), /* @__PURE__ */ React.createElement("rect", { x, y, width: "14", height: h, fill: c, stroke: INK, strokeWidth: "2" })))), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-3 text-center text-xs", style: { color: "#9CA3AF" } }, "Chart goes live at launch. Paste your DexScreener or Birdeye embed URL into", /* @__PURE__ */ React.createElement("span", { style: { color: GOLD } }, " CONFIG.chartEmbed"), " and this panel becomes the real thing."), /* @__PURE__ */ React.createElement(
+        "a",
+        {
+          href: CONFIG.dexscreener,
+          target: "_blank",
+          rel: "noreferrer",
+          className: "bg-mono mt-3 px-3 py-2 text-xs font-bold",
+          style: { background: GOLD, color: INK, border: `3px solid ${INK}` }
+        },
+        "Open DexScreener"
+      ))), tab === "timeline" && /* @__PURE__ */ React.createElement("div", { className: "space-y-2" }, TWEETS.map((tw, i) => /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          key: i,
+          style: {
+            background: tw.era === 2 ? "#062E24" : "#141C2B",
+            border: `2px solid ${tw.era === 2 ? GREEN : "#374151"}`,
+            padding: 8
+          }
+        },
+        /* @__PURE__ */ React.createElement("div", { className: "mb-1 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(
+          "div",
+          {
+            style: {
+              width: 20,
+              height: 20,
+              background: tw.era ? GOLD : "#4B5563",
+              border: `2px solid ${INK}`,
+              borderRadius: 3
+            }
+          }
+        ), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: "#F4EBD9" } }, "bengroll"), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs", style: { color: "#6B7280" } }, "@bengroll \xB7 ", tw.h)),
+        /* @__PURE__ */ React.createElement("p", { className: "bg-mono text-xs leading-snug", style: { color: "#D1D5DB" } }, tw.t),
+        /* @__PURE__ */ React.createElement("div", { className: "bg-mono mt-1 text-xs", style: { color: tw.era === 2 ? GREEN : "#6B7280" } }, "\u2665 ", tw.likes)
+      ))), tab === "vault" && /* @__PURE__ */ React.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React.createElement("p", { className: "bg-mono text-xs", style: { color: "#9CA3AF" } }, "Take the art. Make it worse. Post it everywhere."), VAULT.map((v, i) => /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          key: v.name,
+          onClick: i === 0 ? downloadPfp : void 0,
+          className: "bg-press flex w-full items-center gap-3 p-2 text-left",
+          style: { background: "#141C2B", border: `2px solid #374151`, cursor: "pointer" }
+        },
+        /* @__PURE__ */ React.createElement("span", { style: { background: GOLD, border: `2px solid ${INK}`, padding: 5 } }, /* @__PURE__ */ React.createElement(v.icon, { size: 14, strokeWidth: 3, color: INK })),
+        /* @__PURE__ */ React.createElement("span", { className: "flex-1" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono block text-xs font-bold", style: { color: "#F4EBD9" } }, v.name), /* @__PURE__ */ React.createElement("span", { className: "bg-mono block text-xs", style: { color: "#6B7280" } }, v.meta)),
+        /* @__PURE__ */ React.createElement(Download, { size: 15, strokeWidth: 3, color: GREEN })
+      ))))
+    )));
+  }
+  const MEME_INK = "#000000";
+  const MEME_STROKE = "2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 0 3px 0 #000";
+  function BengalCatMascot({ mood = "default" }) {
+    return /* @__PURE__ */ React.createElement(
+      "svg",
+      {
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 200 200",
+        className: "h-full w-full",
+        style: { background: "#f4ece1", display: "block" }
+      },
+      /* @__PURE__ */ React.createElement("rect", { width: "200", height: "200", fill: "#eedfc8" }),
+      [40, 80, 120, 160].map((x) => /* @__PURE__ */ React.createElement("line", { key: x, x1: x, y1: "0", x2: x, y2: "200", stroke: "#dfcbaf", strokeWidth: "2", strokeDasharray: "4 4" })),
+      /* @__PURE__ */ React.createElement("ellipse", { cx: "100", cy: "190", rx: "65", ry: "40", fill: "#e5832d", stroke: "#000", strokeWidth: "4" }),
+      /* @__PURE__ */ React.createElement("ellipse", { cx: "100", cy: "195", rx: "35", ry: "25", fill: "#fbe3b5", stroke: "#000", strokeWidth: "3" }),
+      /* @__PURE__ */ React.createElement("polygon", { points: "45,95 25,35 80,65", fill: "#e5832d", stroke: "#000", strokeWidth: "4", strokeLinejoin: "round" }),
+      /* @__PURE__ */ React.createElement("polygon", { points: "45,90 35,48 72,70", fill: "#f8a5a5", stroke: "#000", strokeWidth: "2" }),
+      /* @__PURE__ */ React.createElement("polygon", { points: "155,95 175,35 120,65", fill: "#e5832d", stroke: "#000", strokeWidth: "4", strokeLinejoin: "round" }),
+      /* @__PURE__ */ React.createElement("polygon", { points: "155,90 165,48 128,70", fill: "#f8a5a5", stroke: "#000", strokeWidth: "2" }),
+      /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "110", r: "56", fill: "#e5832d", stroke: "#000", strokeWidth: "4" }),
+      /* @__PURE__ */ React.createElement("path", { d: "M 85,60 L 88,80", stroke: "#843900", strokeWidth: "4", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("path", { d: "M 100,56 L 100,82", stroke: "#843900", strokeWidth: "4", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("path", { d: "M 115,60 L 112,80", stroke: "#843900", strokeWidth: "4", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("ellipse", { cx: "74", cy: "108", rx: "16", ry: "18", fill: "#fff", stroke: "#000", strokeWidth: "3.5" }),
+      /* @__PURE__ */ React.createElement("ellipse", { cx: "126", cy: "108", rx: "16", ry: "18", fill: "#fff", stroke: "#000", strokeWidth: "3.5" }),
+      /* @__PURE__ */ React.createElement("circle", { cx: "74", cy: "108", r: "11", fill: "#22c55e", stroke: "#000", strokeWidth: "2" }),
+      /* @__PURE__ */ React.createElement("circle", { cx: "126", cy: "108", r: "11", fill: "#22c55e", stroke: "#000", strokeWidth: "2" }),
+      /* @__PURE__ */ React.createElement("circle", { cx: "74", cy: "108", r: "6", fill: "#000" }),
+      /* @__PURE__ */ React.createElement("circle", { cx: "126", cy: "108", r: "6", fill: "#000" }),
+      /* @__PURE__ */ React.createElement("circle", { cx: "71", cy: "104", r: "3", fill: "#fff" }),
+      /* @__PURE__ */ React.createElement("circle", { cx: "123", cy: "104", r: "3", fill: "#fff" }),
+      /* @__PURE__ */ React.createElement("path", { d: "M 60,86 Q 74,80 88,88", stroke: "#000", strokeWidth: "4", fill: "none", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("path", { d: "M 140,86 Q 126,80 112,88", stroke: "#000", strokeWidth: "4", fill: "none", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("ellipse", { cx: "92", cy: "126", rx: "12", ry: "9", fill: "#fbe3b5", stroke: "#000", strokeWidth: "2" }),
+      /* @__PURE__ */ React.createElement("ellipse", { cx: "108", cy: "126", rx: "12", ry: "9", fill: "#fbe3b5", stroke: "#000", strokeWidth: "2" }),
+      /* @__PURE__ */ React.createElement("polygon", { points: "100,121 94,114 106,114", fill: "#f472b6", stroke: "#000", strokeWidth: "2.5" }),
+      /* @__PURE__ */ React.createElement("path", { d: "M 94,124 Q 100,128 106,124", stroke: "#000", strokeWidth: "3", fill: "none" }),
+      /* @__PURE__ */ React.createElement("line", { x1: "30", y1: "120", x2: "70", y2: "124", stroke: "#fff", strokeWidth: "3", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("line", { x1: "28", y1: "130", x2: "68", y2: "130", stroke: "#fff", strokeWidth: "3", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "120", x2: "130", y2: "124", stroke: "#fff", strokeWidth: "3", strokeLinecap: "round" }),
+      /* @__PURE__ */ React.createElement("line", { x1: "172", y1: "130", x2: "132", y2: "130", stroke: "#fff", strokeWidth: "3", strokeLinecap: "round" }),
+      mood === "whale" && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("path", { d: "M 50,102 Q 100,95 150,102 L 146,118 Q 100,112 54,118 Z", fill: "#111", stroke: "#000", strokeWidth: "3" }), /* @__PURE__ */ React.createElement("rect", { x: "70", y: "162", width: "60", height: "12", rx: "6", fill: "#facc15", stroke: "#000", strokeWidth: "3" })),
+      mood === "4am" && /* @__PURE__ */ React.createElement("path", { d: "M 38,90 Q 100,20 162,90 L 162,170 Q 100,180 38,170 Z", fill: "none", stroke: "#334155", strokeWidth: "16" }),
+      mood === "ceo" && /* @__PURE__ */ React.createElement("polygon", { points: "100,158 90,195 100,200 110,195", fill: "#1e293b", stroke: "#000", strokeWidth: "2" }),
+      mood === "cook" && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("ellipse", { cx: "100", cy: "50", rx: "38", ry: "20", fill: "#fff", stroke: "#000", strokeWidth: "3" }), /* @__PURE__ */ React.createElement("rect", { x: "75", y: "50", width: "50", height: "18", fill: "#fff", stroke: "#000", strokeWidth: "3" })),
+      mood === "dip" && /* @__PURE__ */ React.createElement("path", { d: "M 40,165 Q 100,150 160,165 L 165,200 L 35,200 Z", fill: "#0284c7", stroke: "#000", strokeWidth: "4" }),
+      mood === "crusader" && /* @__PURE__ */ React.createElement("path", { d: "M 50,75 L 100,30 L 150,75 L 140,100 L 60,100 Z", fill: "#94a3b8", stroke: "#000", strokeWidth: "3" })
+    );
+  }
+  const TEMPLATES = [
+    { id: "whale", label: "Faux Whale", mood: "whale" },
+    { id: "4am", label: "4 AM Chart Watcher", mood: "4am" },
+    { id: "ceo", label: "CEO Larp", mood: "ceo" },
+    { id: "cook", label: "Hopium Cook", mood: "cook" },
+    { id: "dip", label: "Dip Buyer", mood: "dip" },
+    { id: "crusader", label: "The Crusader", mood: "crusader" }
+  ];
+  const RANDOM_CAPTIONS = [
+    { top: "BUY THE DIP", bottom: "COPE" },
+    { top: "ONE GREEN CANDLE", bottom: "WE'RE SO BACK" },
+    { top: "POSTED LIKE A WHALE", bottom: "PORTFOLIO DOWN 98%" },
+    { top: "LARPED INTO REALITY", bottom: "$BENGROLL" },
+    { top: "BOUGHT TOP", bottom: "STILL COZY" }
+  ];
+  const SHOWCASE_ITEMS = [
+    { id: "dip", top: "BUY THE DIP", bottom: "COPE" },
+    { id: "4am", top: "STILL UP", bottom: "STILL RED" },
+    { id: "whale", top: "LARPED", bottom: "INTO REALITY" },
+    { id: "ceo", top: "STILL EARLY", bottom: "STILL WRONG" },
+    { id: "cook", top: "HOPIUM", bottom: "SERVED HOT" }
+  ];
+  const MEME_GOAL = 100;
+  function BengrollMemeMaker() {
+    const [selected, setSelected] = useState(TEMPLATES[0]);
+    const [topText, setTopText] = useState("BUY THE DIP");
+    const [bottomText, setBottomText] = useState("COPE");
+    const [made, setMade] = useState(0);
+    const [busy, setBusy] = useState(false);
+    const [saved, setSaved] = useState(false);
+    const [wobble, setWobble] = useState(false);
+    const memeCanvasRef = useRef(null);
+    const pct = Math.min(100, made / MEME_GOAL * 100);
+    const randomize = () => {
+      const pick = RANDOM_CAPTIONS[Math.floor(Math.random() * RANDOM_CAPTIONS.length)];
+      setTopText(pick.top);
+      setBottomText(pick.bottom);
+      setWobble(false);
+      requestAnimationFrame(() => setWobble(true));
+      setTimeout(() => setWobble(false), 650);
+    };
+    const loadShowcase = (item) => {
+      const tpl = TEMPLATES.find((x) => x.id === item.id);
+      if (tpl) setSelected(tpl);
+      setTopText(item.top);
+      setBottomText(item.bottom);
+      if (typeof window !== "undefined" && memeCanvasRef.current) {
+        memeCanvasRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      setWobble(false);
+      requestAnimationFrame(() => setWobble(true));
+      setTimeout(() => setWobble(false), 650);
+    };
+    const shareOnX = () => {
+      const url = "https://x.com/intent/tweet?text=I%20just%20larped%20a%20bankroll%20with%20%24BENGROLL%20%40BengrollCoin&hashtags=BENGROLL,Solana";
+      window.open(url, "_blank", "noopener,noreferrer");
+    };
+    const download = () => {
+      const host = memeCanvasRef.current;
+      const svg = host && host.querySelector("svg");
+      if (!svg || busy) return;
+      setBusy(true);
+      const S = 800;
+      const canvas = document.createElement("canvas");
+      canvas.width = S;
+      canvas.height = S;
+      const ctx = canvas.getContext("2d");
+      const caption = (text, anchor) => {
+        if (!text || !text.trim()) return;
+        const words = text.toUpperCase().split(/\s+/);
+        let size = Math.round(S * 0.1);
+        let lines = [];
+        const layout = () => {
+          ctx.font = `900 ${size}px Impact, 'Arial Black', system-ui, sans-serif`;
+          lines = [];
+          let line = "";
+          words.forEach((word) => {
+            const next = line ? `${line} ${word}` : word;
+            if (ctx.measureText(next).width > S * 0.9 && line) {
+              lines.push(line);
+              line = word;
+            } else {
+              line = next;
+            }
+          });
+          if (line) lines.push(line);
+        };
+        layout();
+        while (lines.length > 3 && size > S * 0.045) {
+          size -= 6;
+          layout();
+        }
+        const lh = size * 1.06;
+        const startY = anchor === "top" ? S * 0.05 + size : S * 0.9 - lh * (lines.length - 1);
+        ctx.textAlign = "center";
+        ctx.lineJoin = "round";
+        ctx.miterLimit = 2;
+        ctx.lineWidth = Math.max(10, size * 0.16);
+        ctx.strokeStyle = "#000";
+        ctx.fillStyle = "#fff";
+        lines.forEach((ln, i) => {
+          const y = startY + i * lh;
+          ctx.strokeText(ln, S / 2, y);
+          ctx.fillText(ln, S / 2, y);
+        });
+      };
+      const stamp = () => {
+        caption(topText, "top");
+        caption(bottomText, "bottom");
+        const bw = S * 0.19;
+        const bh = S * 0.055;
+        const bx = S - bw - S * 0.03;
+        const by = S - bh - S * 0.03;
+        ctx.fillStyle = "#000";
+        ctx.fillRect(bx, by, bw, bh);
+        ctx.fillStyle = "#22c55e";
+        ctx.font = `700 ${Math.round(bh * 0.5)}px ui-monospace, monospace`;
+        ctx.textAlign = "center";
+        ctx.fillText("$BENGROLL", bx + bw / 2, by + bh * 0.66);
+        const finish = (url, revoke) => {
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "bengroll-meme.png";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          if (revoke) setTimeout(() => URL.revokeObjectURL(url), 2e3);
+          setMade((m) => m + 1);
+          setBusy(false);
+          setSaved(true);
+          setTimeout(() => setSaved(false), 1600);
+        };
+        try {
+          if (canvas.toBlob) {
+            canvas.toBlob((blob) => blob ? finish(URL.createObjectURL(blob), true) : setBusy(false), "image/png");
+          } else {
+            finish(canvas.toDataURL("image/png"), false);
+          }
+        } catch (e) {
+          setBusy(false);
+        }
+      };
+      try {
+        const xml = new XMLSerializer().serializeToString(svg);
+        const img = document.createElement("img");
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, S, S);
+          stamp();
+        };
+        img.onerror = () => {
+          ctx.fillStyle = "#eedfc8";
+          ctx.fillRect(0, 0, S, S);
+          stamp();
+        };
+        img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(xml);
+      } catch (e) {
+        setBusy(false);
+      }
+    };
+    const b1 = `1.5px solid ${MEME_INK}`;
+    const b2 = `2px solid ${MEME_INK}`;
+    const b3 = `3px solid ${MEME_INK}`;
+    const sh = (n) => `${n}px ${n}px 0px ${MEME_INK}`;
+    return /* @__PURE__ */ React.createElement("div", { id: "memes", className: "mx-auto w-full max-w-4xl select-none p-4 font-sans" }, /* @__PURE__ */ React.createElement("h2", { className: "mb-3 text-3xl font-black uppercase tracking-tight sm:text-4xl", style: { color: MEME_INK } }, "BENGROLL MEME MAKER"), /* @__PURE__ */ React.createElement("div", { className: "p-4 sm:p-5", style: { border: b3, background: "#fbf8ef", boxShadow: sh(6) } }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-5 md:flex-row" }, /* @__PURE__ */ React.createElement("div", { className: "mm-col-left flex flex-col gap-3" }, /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        ref: memeCanvasRef,
+        className: `relative flex w-full flex-col justify-between overflow-hidden ${wobble ? "mm-wobble" : ""}`,
+        style: { aspectRatio: "1 / 1", border: b3, background: "#fff", boxShadow: sh(4) }
+      },
+      /* @__PURE__ */ React.createElement("div", { className: "absolute inset-0 z-0" }, /* @__PURE__ */ React.createElement(BengalCatMascot, { mood: selected.mood })),
+      /* @__PURE__ */ React.createElement(
+        "p",
+        {
+          className: "relative z-10 px-2 pt-3 text-center text-2xl font-black uppercase tracking-wide text-white sm:text-3xl",
+          style: { textShadow: MEME_STROKE }
+        },
+        topText || " "
+      ),
+      /* @__PURE__ */ React.createElement("div", { className: "relative z-10 pb-3" }, /* @__PURE__ */ React.createElement(
+        "p",
+        {
+          className: "px-2 text-center text-2xl font-black uppercase tracking-wide text-white sm:text-3xl",
+          style: { textShadow: MEME_STROKE }
+        },
+        bottomText || " "
+      ), /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "absolute bottom-2 right-2 px-1.5 py-0.5 font-mono font-bold",
+          style: { background: "#000", color: "#22c55e", fontSize: 10, border: "1px solid #000" }
+        },
+        "$BENGROLL"
+      ))
+    ), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-1 p-2", style: { border: b2, background: "#fff", boxShadow: sh(2) } }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between font-mono font-bold uppercase", style: { fontSize: 10 } }, /* @__PURE__ */ React.createElement("span", null, "MEMES CREATED"), /* @__PURE__ */ React.createElement("span", null, "NEXT UNLOCK AT ", MEME_GOAL, " MEMES")), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "relative w-full overflow-hidden",
+        style: { height: 12, border: b1, background: "#f1eee7" },
+        role: "progressbar",
+        "aria-valuenow": made,
+        "aria-valuemin": 0,
+        "aria-valuemax": MEME_GOAL
+      },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "h-full",
+          style: {
+            width: "100%",
+            background: "#f59e0b",
+            borderRight: b1,
+            transform: `scaleX(${pct / 100})`,
+            transformOrigin: "left center",
+            willChange: "transform",
+            transition: "transform .3s ease-out"
+          }
+        }
+      )
+    ))), /* @__PURE__ */ React.createElement("div", { className: "mm-col-right flex flex-col gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "p-3", style: { border: b2, background: "#fff", boxShadow: sh(3) } }, /* @__PURE__ */ React.createElement("h3", { className: "mb-2 text-sm font-black uppercase" }, "TEMPLATE GALLERY"), /* @__PURE__ */ React.createElement("div", { className: "mb-3 grid grid-cols-2 gap-2" }, TEMPLATES.map((tpl) => {
+      const active = selected.id === tpl.id;
+      return /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          key: tpl.id,
+          onClick: () => setSelected(tpl),
+          "aria-pressed": active,
+          "data-active": active ? "true" : "false",
+          className: "mm-tpl relative cursor-pointer p-1 text-center",
+          style: {
+            border: active ? "3px solid #facc15" : b2,
+            background: active ? "#fef08a" : "#faf7f2",
+            boxShadow: active ? "none" : sh(2),
+            transform: active ? "translate(2px,2px)" : void 0
+          }
+        },
+        active && /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            className: "absolute z-10 flex items-center justify-center font-black",
+            style: {
+              top: -8,
+              right: -8,
+              width: 20,
+              height: 20,
+              borderRadius: "50%",
+              background: "#000",
+              color: "#fff",
+              fontSize: 11,
+              border: "2px solid #facc15"
+            }
+          },
+          "\u2713"
+        ),
+        /* @__PURE__ */ React.createElement("div", { className: "mb-1 w-full overflow-hidden", style: { aspectRatio: "1 / 1", border: "1px solid #000" } }, /* @__PURE__ */ React.createElement(BengalCatMascot, { mood: tpl.mood })),
+        /* @__PURE__ */ React.createElement("span", { className: "block truncate font-black uppercase", style: { fontSize: 10 } }, tpl.label)
+      );
+    })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "mb-0.5 block font-black uppercase", style: { fontSize: 10 }, htmlFor: "mm-top" }, "TOP TEXT"), /* @__PURE__ */ React.createElement(
+      "input",
+      {
+        id: "mm-top",
+        type: "text",
+        value: topText,
+        onChange: (e) => setTopText(e.target.value),
+        className: "mm-input w-full px-2 py-1 text-center text-sm font-black uppercase",
+        style: { border: b2, background: "#fff", color: MEME_INK }
+      }
+    )), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "mb-0.5 block font-black uppercase", style: { fontSize: 10 }, htmlFor: "mm-bottom" }, "BOTTOM TEXT"), /* @__PURE__ */ React.createElement(
+      "input",
+      {
+        id: "mm-bottom",
+        type: "text",
+        value: bottomText,
+        onChange: (e) => setBottomText(e.target.value),
+        className: "mm-input w-full px-2 py-1 text-center text-sm font-black uppercase",
+        style: { border: b2, background: "#fff", color: MEME_INK }
+      }
+    ))), /* @__PURE__ */ React.createElement("div", { className: "mt-3 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        onClick: download,
+        disabled: busy,
+        className: "mm-press w-full cursor-pointer py-2.5 text-sm font-black uppercase",
+        style: { background: saved ? "#facc15" : "#10b981", border: b2, boxShadow: sh(3), color: MEME_INK }
+      },
+      busy ? "DOWNLOADING\u2026" : saved ? "SAVED!" : "DOWNLOAD MEME"
+    ), /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        onClick: randomize,
+        className: "mm-press w-full cursor-pointer py-1.5 text-xs font-black uppercase",
+        style: { background: "#fff", border: b2, boxShadow: sh(2), color: MEME_INK }
+      },
+      "RANDOMIZE CAPTION"
+    ), /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        onClick: shareOnX,
+        className: "mm-press w-full cursor-pointer py-1.5 text-xs font-black uppercase",
+        style: { background: "#000", border: b2, boxShadow: sh(2), color: "#fff" }
+      },
+      "POST TO \u{1D54F}"
+    ))))), /* @__PURE__ */ React.createElement("div", { className: "mt-4 p-3", style: { border: b2, background: "#fff", boxShadow: sh(3) } }, /* @__PURE__ */ React.createElement("h4", { className: "mb-2 text-xs font-black uppercase" }, "COMMUNITY SHOWCASE"), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-5 gap-2" }, SHOWCASE_ITEMS.map((item, i) => {
+      const tpl = TEMPLATES.find((x) => x.id === item.id) || TEMPLATES[0];
+      return /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          key: i,
+          onClick: () => loadShowcase(item),
+          title: `Load "${item.top} / ${item.bottom}"`,
+          className: "mm-show relative block cursor-pointer overflow-hidden p-0",
+          style: { aspectRatio: "4 / 4.5", border: b2, background: "#fff", boxShadow: sh(2) }
+        },
+        /* @__PURE__ */ React.createElement("span", { className: "absolute inset-0 block" }, /* @__PURE__ */ React.createElement(BengalCatMascot, { mood: tpl.mood })),
+        /* @__PURE__ */ React.createElement("span", { className: "relative flex h-full w-full flex-col justify-between p-1" }, /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            className: "text-center font-black uppercase leading-tight text-white",
+            style: { fontSize: 9, textShadow: MEME_STROKE }
+          },
+          item.top
+        ), /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            className: "text-center font-black uppercase leading-tight text-white",
+            style: { fontSize: 9, textShadow: MEME_STROKE }
+          },
+          item.bottom
+        ))
+      );
+    }))), /* @__PURE__ */ React.createElement("p", { className: "mt-3 text-center font-mono", style: { fontSize: 9, color: "#737373" } }, "Counter is local to your session. Nothing here is a balance, a promise, or financial advice.")));
+  }
+  const SPECS = [
+    { icon: Coins, label: "Total supply", value: "1,000,000,000", sub: "100% in circulation" },
+    { icon: ShieldCheck, label: "Tax", value: "0% / 0%", sub: "Zero friction, buy and sell" },
+    { icon: Flame, label: "Liquidity", value: "100% LP burned", sub: "Keys thrown in the trenches" },
+    { icon: Lock, label: "Mint authority", value: "Revoked", sub: "Immutable contract" }
+  ];
+  const STEPS = [
+    {
+      n: 1,
+      title: "Get equipped",
+      body: "Install Phantom or Solflare. Write the seed phrase on paper, not in your notes app.",
+      icon: Wallet
+    },
+    {
+      n: 2,
+      title: "Fund the mission",
+      body: "Send SOL to your wallet from an exchange, or buy it in-app. Leave a little for fees.",
+      icon: Coins
+    },
+    {
+      n: 3,
+      title: "Secure the bengroll",
+      body: "Open Raydium or Jupiter, paste the official contract address, and swap SOL for $BENGROLL.",
+      icon: Sparkles
+    }
+  ];
+  const CHAPTERS = [
+    {
+      ch: "Chapter 1",
+      title: "The larp begins",
+      items: ["Fair launch on Solana", "LP burned, contract renounced", "Site + room simulator live", "First 1,000 holders"],
+      state: "live"
+    },
+    {
+      ch: "Chapter 2",
+      title: "The timeline takeover",
+      items: ["CoinGecko + CMC fast-track", "Raid engine and meme bounties", "Animated comic strips", "Trending on CT"],
+      state: "next"
+    },
+    {
+      ch: "Chapter 3",
+      title: "The real bags",
+      items: ["Tier CEX listings", "Iced-out plushies and merch", "Browser game expansion", "Bengroll comic issue #1"],
+      state: "later"
+    }
+  ];
+  function BengrollLanding() {
+    const [dark, setDark] = useState(false);
+    const [muted, setMuted] = useState(true);
+    const [navOpen, setNavOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const t = dark ? PALETTE.news : PALETTE.paper;
+    useEffect(() => {
+      const onScroll = () => setScrolled(window.scrollY > 24);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+    const links = useMemo(
+      () => [
+        { href: "#come-up", label: "The Come Up" },
+        { href: "#tokenomics", label: "Tokenomics" },
+        { href: "#buy", label: "How to Buy" },
+        { href: "#memes", label: "Meme Maker" },
+        { href: "#playbook", label: "The Playbook" }
+      ],
+      []
+    );
+    const socials = [
+      { href: CONFIG.x, label: "X", icon: XLogo },
+      { href: CONFIG.telegram, label: "Telegram", icon: Send },
+      { href: CONFIG.dexscreener, label: "DexScreener", icon: LineChart }
+    ];
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "relative min-h-screen w-full",
+        style: { background: t.bg, color: t.text, "--bg-shadow": t.shadow }
+      },
+      /* @__PURE__ */ React.createElement("style", null, CSS),
+      /* @__PURE__ */ React.createElement(Halftone, { t }),
+      /* @__PURE__ */ React.createElement(
+        "header",
+        {
+          className: "sticky top-0 z-50 w-full",
+          style: {
+            background: t.bg,
+            borderBottom: `4px solid ${t.border}`,
+            boxShadow: scrolled ? hardShadow(t.shadow, 0, 6) : "none",
+            transition: "box-shadow .2s ease"
+          }
+        },
+        /* @__PURE__ */ React.createElement("div", { className: "mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3" }, /* @__PURE__ */ React.createElement("a", { href: "#top", className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            className: "bg-bob",
+            style: { width: 44, height: 44, border: `4px solid ${t.border}`, background: GOLD, display: "block" }
+          },
+          /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 100 100", style: { display: "block" } }, /* @__PURE__ */ React.createElement("path", { d: "M20 48 L14 10 L46 30 Z", fill: AMBER, stroke: INK, strokeWidth: "6", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M80 48 L86 10 L54 30 Z", fill: AMBER, stroke: INK, strokeWidth: "6", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M25 44 L21 20 L41 32 Z", fill: "#E9A2A0" }), /* @__PURE__ */ React.createElement("path", { d: "M75 44 L79 20 L59 32 Z", fill: "#E9A2A0" }), /* @__PURE__ */ React.createElement("ellipse", { cx: "50", cy: "58", rx: "37", ry: "33", fill: AMBER, stroke: INK, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("g", { stroke: "#8B5A2B", strokeWidth: "5", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M42 34 q2 -10 0 -16" }), /* @__PURE__ */ React.createElement("path", { d: "M50 32 q1 -11 0 -17" }), /* @__PURE__ */ React.createElement("path", { d: "M58 34 q-2 -10 0 -16" })), /* @__PURE__ */ React.createElement("circle", { cx: "37", cy: "58", r: "11", fill: "#fff", stroke: INK, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("circle", { cx: "63", cy: "58", r: "11", fill: "#fff", stroke: INK, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("circle", { cx: "37", cy: "60", r: "6", fill: "#7BC24A" }), /* @__PURE__ */ React.createElement("circle", { cx: "63", cy: "60", r: "6", fill: "#7BC24A" }), /* @__PURE__ */ React.createElement("circle", { cx: "37", cy: "60", r: "2.6", fill: INK }), /* @__PURE__ */ React.createElement("circle", { cx: "63", cy: "60", r: "2.6", fill: INK }), /* @__PURE__ */ React.createElement("path", { d: "M25 60 Q30 46 44 50 L44 42 L25 42 Z", fill: AMBER }), /* @__PURE__ */ React.createElement("path", { d: "M75 60 Q70 46 56 50 L56 42 L75 42 Z", fill: AMBER }), /* @__PURE__ */ React.createElement("path", { d: "M25 60 Q30 46 44 50 M75 60 Q70 46 56 50", fill: "none", stroke: INK, strokeWidth: "4", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M46 74 h8 l-4 5 Z", fill: "#E9A2A0", stroke: INK, strokeWidth: "3", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M42 84 q8 -5 16 0", stroke: INK, strokeWidth: "4.5", fill: "none", strokeLinecap: "round" }))
+        ), /* @__PURE__ */ React.createElement("span", { className: "bg-display text-2xl leading-none", style: { color: t.text } }, "BENGROLL", /* @__PURE__ */ React.createElement("span", { className: "bg-mono ml-1 text-xs", style: { color: AMBER } }, "$BENGROLL"))), /* @__PURE__ */ React.createElement("nav", { className: "ml-auto hidden items-center gap-5 lg:flex" }, links.map((l) => /* @__PURE__ */ React.createElement(
+          "a",
+          {
+            key: l.href,
+            href: l.href,
+            className: "bg-mono bg-nav-link text-sm font-bold",
+            style: { color: t.text }
+          },
+          "[ ",
+          l.label,
+          " ]"
+        ))), /* @__PURE__ */ React.createElement("div", { className: "ml-auto flex items-center gap-2 lg:ml-0" }, /* @__PURE__ */ React.createElement("div", { className: "hidden sm:block" }, /* @__PURE__ */ React.createElement(CopyCA, { t, compact: true })), socials.map((s) => /* @__PURE__ */ React.createElement(
+          "a",
+          {
+            key: s.label,
+            href: s.href,
+            target: "_blank",
+            rel: "noreferrer",
+            "aria-label": s.label,
+            className: "bg-press hidden p-2 sm:block",
+            style: {
+              background: t.panel,
+              border: `4px solid ${t.border}`,
+              boxShadow: hardShadow(t.shadow, 3, 3),
+              color: t.text
+            }
+          },
+          /* @__PURE__ */ React.createElement(s.icon, { size: 16, strokeWidth: 3 })
+        )), /* @__PURE__ */ React.createElement(
+          "button",
+          {
+            onClick: () => setDark((d) => !d),
+            "aria-label": dark ? "Switch to paper mode" : "Switch to newsprint mode",
+            className: "bg-press p-2",
+            style: {
+              background: dark ? GOLD : t.panel,
+              color: dark ? INK : t.text,
+              border: `4px solid ${t.border}`,
+              boxShadow: hardShadow(t.shadow, 3, 3),
+              cursor: "pointer"
+            }
+          },
+          dark ? /* @__PURE__ */ React.createElement(Sun, { size: 16, strokeWidth: 3 }) : /* @__PURE__ */ React.createElement(Moon, { size: 16, strokeWidth: 3 })
+        ), /* @__PURE__ */ React.createElement(
+          "button",
+          {
+            onClick: () => setNavOpen((o) => !o),
+            "aria-label": "Menu",
+            className: "bg-press p-2 lg:hidden",
+            style: {
+              background: t.panel,
+              color: t.text,
+              border: `4px solid ${t.border}`,
+              boxShadow: hardShadow(t.shadow, 3, 3),
+              cursor: "pointer"
+            }
+          },
+          navOpen ? /* @__PURE__ */ React.createElement(XIcon, { size: 16, strokeWidth: 3 }) : /* @__PURE__ */ React.createElement(Menu, { size: 16, strokeWidth: 3 })
+        ))),
+        navOpen && /* @__PURE__ */ React.createElement("div", { className: "bg-tabin px-4 pb-4 lg:hidden", style: { background: t.bg } }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, links.map((l) => /* @__PURE__ */ React.createElement(
+          "a",
+          {
+            key: l.href,
+            href: l.href,
+            onClick: () => setNavOpen(false),
+            className: "bg-mono px-3 py-2 text-sm font-bold",
+            style: { background: t.panel, border: `3px solid ${t.border}`, color: t.text }
+          },
+          "[ ",
+          l.label,
+          " ]"
+        )), /* @__PURE__ */ React.createElement("div", { className: "flex gap-2 sm:hidden" }, socials.map((s) => /* @__PURE__ */ React.createElement(
+          "a",
+          {
+            key: s.label,
+            href: s.href,
+            target: "_blank",
+            rel: "noreferrer",
+            className: "bg-mono flex-1 px-3 py-2 text-center text-xs font-bold",
+            style: { background: GOLD, border: `3px solid ${INK}`, color: INK }
+          },
+          s.label
+        ))), /* @__PURE__ */ React.createElement("div", { className: "sm:hidden" }, /* @__PURE__ */ React.createElement(CopyCA, { t, compact: true }))))
+      ),
+      /* @__PURE__ */ React.createElement("main", { id: "top", className: "relative" }, /* @__PURE__ */ React.createElement("section", { className: "relative mx-auto max-w-6xl px-4 pb-6 pt-10 md:pt-14" }, /* @__PURE__ */ React.createElement("div", { className: "grid items-center gap-8 lg:grid-cols-2" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "bg-mono mb-4 inline-block px-3 py-1 text-xs font-bold",
+          style: { background: GREEN, color: INK, border: `3px solid ${INK}`, boxShadow: hardShadow(INK, 3, 3) }
+        },
+        "Issue #1 \xB7 Solana \xB7 fair launch"
+      ), /* @__PURE__ */ React.createElement(
+        "h1",
+        {
+          className: "bg-display text-6xl leading-[0.86] md:text-8xl",
+          style: { color: t.text, textShadow: `6px 6px 0px ${GOLD}, 10px 10px 0px ${AMBER}` }
+        },
+        "BENGROLL"
+      ), /* @__PURE__ */ React.createElement("p", { className: "bg-display mt-3 text-2xl leading-tight md:text-3xl", style: { color: AMBER } }, "The cat that larped a bankroll."), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-3 max-w-md text-sm leading-relaxed", style: { color: t.dim } }, "From cracked screens to eight-figure bags. He put on a plastic chain in a room with peeling wallpaper, posted like a whale until the timeline believed him, and the bag showed up anyway."), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap gap-3" }, /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: "#buy", variant: "green" }, "Roll the bag / buy $BENGROLL", /* @__PURE__ */ React.createElement(ArrowRight, { size: 20, strokeWidth: 3 })), /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: CONFIG.x, target: "_blank", rel: "noreferrer", variant: "dark" }, /* @__PURE__ */ React.createElement(XLogo, { size: 19, strokeWidth: 3 }), "Join the timeline")), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "Contract"), /* @__PURE__ */ React.createElement(CopyCA, { t }))), /* @__PURE__ */ React.createElement("div", { className: "relative pt-6 sm:pt-4" }, /* @__PURE__ */ React.createElement(HeroMascotCard, { t }), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mx-auto mt-6 max-w-lg text-center text-xs font-bold", style: { color: t.dim } }, "\u201CI said I was rich until the chart agreed with me.\u201D")))), /* @__PURE__ */ React.createElement("div", { className: "relative my-8" }, /* @__PURE__ */ React.createElement(TickerRibbon, { t, tone: GOLD, angle: -1.4 })), /* @__PURE__ */ React.createElement("section", { className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Interactive" }, "The come up"), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mb-6 max-w-2xl text-sm", style: { color: t.dim } }, "Every click is a post. Every post is a larp. Keep going and the room upgrades around him \u2014 chain first, then the cash on the floor, then the whole penthouse."), /* @__PURE__ */ React.createElement("div", { className: "grid gap-8 lg:grid-cols-5" }, /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-3" }, /* @__PURE__ */ React.createElement(ComeUpRoom, { t, muted, setMuted })), /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-2" }, /* @__PURE__ */ React.createElement("h3", { className: "bg-display mb-3 text-2xl", style: { color: t.text } }, "The cracked screen"), /* @__PURE__ */ React.createElement(CrackedPhone, { t })))), /* @__PURE__ */ React.createElement("section", { id: "tokenomics", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Stat sheet" }, "The bengroll specs"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 sm:grid-cols-2 lg:grid-cols-4" }, SPECS.map((s, i) => /* @__PURE__ */ React.createElement("div", { key: s.label, style: { transform: `rotate(${i % 2 ? 0.7 : -0.7}deg)` } }, /* @__PURE__ */ React.createElement(Panel, { t, lift: true, className: "h-full p-4" }, /* @__PURE__ */ React.createElement("div", { className: "mb-3 flex items-center justify-between" }, /* @__PURE__ */ React.createElement("span", { style: { background: GOLD, border: `3px solid ${INK}`, padding: 6, display: "inline-flex" } }, /* @__PURE__ */ React.createElement(s.icon, { size: 18, strokeWidth: 3, color: INK })), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, String(i + 1).padStart(2, "0"))), /* @__PURE__ */ React.createElement("div", { className: "bg-mono text-xs font-bold uppercase", style: { color: t.dim } }, s.label), /* @__PURE__ */ React.createElement("div", { className: "bg-display text-2xl leading-tight", style: { color: t.text } }, s.value), /* @__PURE__ */ React.createElement("div", { className: "bg-mono mt-1 text-xs", style: { color: AMBER } }, s.sub)))))), /* @__PURE__ */ React.createElement("section", { id: "buy", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Three panels" }, "How to get a bengroll"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 md:grid-cols-3" }, STEPS.map((s) => /* @__PURE__ */ React.createElement(Panel, { key: s.n, t, lift: true, className: "relative p-5" }, /* @__PURE__ */ React.createElement(
+        "span",
+        {
+          className: "bg-display absolute -left-3 -top-3 flex h-11 w-11 items-center justify-center text-2xl",
+          style: { background: GREEN, color: INK, border: `4px solid ${INK}`, boxShadow: hardShadow(INK, 3, 3) }
+        },
+        s.n
+      ), /* @__PURE__ */ React.createElement("div", { className: "mb-3 flex justify-end" }, /* @__PURE__ */ React.createElement(s.icon, { size: 30, strokeWidth: 2.6, color: AMBER })), /* @__PURE__ */ React.createElement("h3", { className: "bg-display text-2xl leading-tight", style: { color: t.text } }, s.title), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-2 text-sm leading-relaxed", style: { color: t.dim } }, s.body)))), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap items-center gap-3" }, /* @__PURE__ */ React.createElement(CopyCA, { t }), /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: CONFIG.dexscreener, target: "_blank", rel: "noreferrer", variant: "gold" }, "Check the chart", /* @__PURE__ */ React.createElement(ArrowRight, { size: 19, strokeWidth: 3 })))), /* @__PURE__ */ React.createElement("div", { className: "relative my-8" }, /* @__PURE__ */ React.createElement(TickerRibbon, { t, tone: GREEN, angle: 1.4 })), /* @__PURE__ */ React.createElement("div", { className: "py-8" }, /* @__PURE__ */ React.createElement(BengrollMemeMaker, null)), /* @__PURE__ */ React.createElement("section", { id: "playbook", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "The arc" }, "The playbook"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 md:grid-cols-3" }, CHAPTERS.map((c) => /* @__PURE__ */ React.createElement(
+        Panel,
+        {
+          key: c.ch,
+          t,
+          lift: true,
+          className: "p-5",
+          style: {
+            background: c.state === "live" ? GOLD : t.panel,
+            color: c.state === "live" ? INK : t.text
+          }
+        },
+        /* @__PURE__ */ React.createElement("div", { className: "bg-mono text-xs font-bold", style: { color: c.state === "live" ? INK : t.dim } }, c.ch, " \xB7 ", c.state === "live" ? "in progress" : c.state === "next" ? "up next" : "later"),
+        /* @__PURE__ */ React.createElement("h3", { className: "bg-display mt-1 text-3xl leading-none" }, c.title),
+        /* @__PURE__ */ React.createElement("ul", { className: "mt-4 space-y-2" }, c.items.map((i) => /* @__PURE__ */ React.createElement("li", { key: i, className: "bg-mono flex gap-2 text-sm" }, /* @__PURE__ */ React.createElement("span", { style: { color: c.state === "live" ? INK : GREEN } }, "\u2726"), /* @__PURE__ */ React.createElement("span", { style: { color: c.state === "live" ? INK : t.dim } }, i))))
+      )))), /* @__PURE__ */ React.createElement("footer", { className: "mt-10", style: { borderTop: `5px solid ${t.border}`, background: t.panelAlt } }, /* @__PURE__ */ React.createElement("div", { className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement("div", { className: "grid gap-8 md:grid-cols-2" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "bg-display text-4xl leading-none", style: { color: t.text } }, "Larp responsibly."), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-3 max-w-md text-sm leading-relaxed", style: { color: t.dim } }, "$BENGROLL is a community-driven memecoin created for entertainment. Nine lives, zero guarantees. It has no team, no roadmap obligations, and no expectation of financial return. Never buy more than you can lose, and always verify the contract address before you swap.")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "bg-mono mb-2 text-xs font-bold uppercase", style: { color: t.dim } }, "Official contract"), /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "bg-mono break-all p-3 text-xs",
+          style: { background: t.panel, border: `4px solid ${t.border}`, color: t.text }
+        },
+        CONFIG.contract
+      ), /* @__PURE__ */ React.createElement("div", { className: "mt-3 flex flex-wrap gap-3" }, /* @__PURE__ */ React.createElement(CopyCA, { t }), socials.map((s) => /* @__PURE__ */ React.createElement(
+        "a",
+        {
+          key: s.label,
+          href: s.href,
+          target: "_blank",
+          rel: "noreferrer",
+          className: "bg-mono bg-press flex items-center gap-2 px-3 py-2 text-xs font-bold",
+          style: { background: GOLD, color: INK, border: `4px solid ${INK}`, boxShadow: hardShadow(INK, 4, 4) }
+        },
+        /* @__PURE__ */ React.createElement(s.icon, { size: 14, strokeWidth: 3 }),
+        s.label
+      ))))), /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "bg-mono mt-8 flex flex-wrap justify-between gap-2 pt-4 text-xs",
+          style: { borderTop: `3px solid ${t.border}`, color: t.dim }
+        },
+        /* @__PURE__ */ React.createElement("span", null, "\xA9 ", (/* @__PURE__ */ new Date()).getFullYear(), " BENGROLL. Not affiliated with any exchange."),
+        /* @__PURE__ */ React.createElement("span", null, "Nothing here is financial advice.")
+      ))))
+    );
+  }
+  const rootEl = document.getElementById("root");
+  if (ReactDOM.createRoot) {
+    ReactDOM.createRoot(rootEl).render(React.createElement(BengrollLanding));
+  } else {
+    ReactDOM.render(React.createElement(BengrollLanding), rootEl);
+  }
+})();
+
+    </script>
+  </body>
+</html>

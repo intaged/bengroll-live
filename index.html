@@ -7,7 +7,6 @@
     <meta name="description" content="$BENGROLL is a community-driven memecoin on Solana. Nine lives, zero guarantees. Larp responsibly." />
     <meta name="theme-color" content="#F4EBD9" />
 
-    <!-- Social cards -->
     <meta property="og:title" content="BENGROLL ($BENGROLL)" />
     <meta property="og:description" content="The cat that larped a bankroll. From cracked screens to eight-figure bags." />
     <meta property="og:type" content="website" />
@@ -31,9 +30,10 @@
 
     <style>
       html, body, #root { min-height: 100%; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
       body { background: #F4EBD9; }
-      /* Shown only until React paints, and only if something went wrong. */
       #boot { font-family: ui-monospace, monospace; padding: 24px; color: #4A423C; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     </style>
   </head>
 
@@ -48,7 +48,6 @@
     </noscript>
 
     <script>
-      // The whole site, pre-compiled from JSX. No Babel needed at runtime.
       window.addEventListener("error", function (e) {
         var boot = document.getElementById("boot");
         if (boot) boot.textContent = "Failed to load: " + (e.message || "unknown error");
@@ -58,9 +57,8 @@
     <script>
 /* ==========================================================================
    BENGROLL — application bundle
-   Pre-transpiled from JSX so the page runs as plain ES2018. Everything below
-   is generated; edit the CONFIG object near the top to change links, the
-   contract address, or the mascot path.
+   Pre-transpiled from JSX so the page runs as plain ES2018. Edit the CONFIG
+   object near the top for links, the contract address and the mascot path.
    ========================================================================== */
 (() => {
   const { useState, useRef, useEffect, useCallback, useMemo } = React;
@@ -109,15 +107,22 @@
     // Placeholder. Swap for the real mint address after deploy.
     contract: "BEN6r0LLcatLARPed1nt0Rea11tyS0LANAmintXXXX",
     x: "https://x.com/bengrollx",
-    telegram: "https://x.com/bengrollx",
-    dexscreener: "https://x.com/bengrollx",
+    /* Launch announcement post. The header X + Telegram badges and the hero
+       "Join the timeline" button all point here. */
+    announcement: "https://x.com/bengrollx/status/2096369142869766261",
+    telegram: "https://t.me/bengroll",
+    dexscreener: "https://dexscreener.com/solana/",
     chartEmbed: "",
     // e.g. "https://dexscreener.com/solana/<pair>?embed=1&theme=dark"
     /* Hero mascot art — the low-poly casino Bengal render.
        Save it to /public/bengal.png. Intrinsic size 1254x1254 (square), which is
        declared on the <img> so the frame reserves its space and nothing shifts.
        If the file is missing the hero falls back to the drawn scene. */
-    mascot: "./bengal.png"
+    /* Absolute URL so the mascot loads in previews and sandboxes too.
+       Self-hosting? Change this to "./bengal.png" and keep the file next to
+       index.html. If the image ever fails to load, the hero falls back to the
+       drawn scene rather than rendering empty. */
+    mascot: "https://bengroll-live.pages.dev/bengal.png"
   };
   const PALETTE = {
     paper: {
@@ -860,7 +865,7 @@
           "+$10,000"
         ))
       ),
-      /* @__PURE__ */ React.createElement("div", { className: "mt-3 flex items-center justify-between gap-2 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "Issue #001 \xB7 Solana"), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: AMBER } }, "Tap to stack"))
+      /* @__PURE__ */ React.createElement("div", { className: "mt-3 flex items-center justify-between gap-2 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "Issue #001 \xB7 Robinhood"), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: AMBER } }, "Tap to stack"))
     ), /* @__PURE__ */ React.createElement(
       "div",
       {
@@ -990,7 +995,7 @@
     "9 LIVES 0 LOSSES",
     "FAKE CHAIN TO REAL BENGROLL",
     "LARPED INTO REALITY",
-    "$BENGROLL ON SOLANA",
+    "$BENGROLL ON ROBINHOOD",
     "CRACKED SCREEN, CLEAN CHART",
     "MANIFEST THE BAG"
   ];
@@ -1273,7 +1278,7 @@
         {
           href: CONFIG.dexscreener,
           target: "_blank",
-          rel: "noreferrer",
+          rel: "noopener noreferrer",
           className: "bg-mono mt-3 px-3 py-2 text-xs font-bold",
           style: { background: GOLD, color: INK, border: `3px solid ${INK}` }
         },
@@ -1419,7 +1424,9 @@
       setTimeout(() => setWobble(false), 650);
     };
     const shareOnX = () => {
-      const url = "https://x.com/intent/tweet?text=I%20just%20larped%20a%20bankroll%20with%20%24BENGROLL%20%40BengrollCoin&hashtags=BENGROLL,Solana";
+      const handle = (CONFIG.x.split("/").filter(Boolean).pop() || "").replace(/^@/, "");
+      const text = `I just larped a bankroll with $BENGROLL${handle ? " @" + handle : ""}`;
+      const url = "https://x.com/intent/tweet?text=" + encodeURIComponent(text) + "&hashtags=BENGROLL,Robinhood";
       window.open(url, "_blank", "noopener,noreferrer");
     };
     const download = () => {
@@ -1727,7 +1734,7 @@
     {
       ch: "Chapter 1",
       title: "The larp begins",
-      items: ["Fair launch on Solana", "LP burned, contract renounced", "Site + room simulator live", "First 1,000 holders"],
+      items: ["Fair launch on Robinhood", "LP burned, contract renounced", "Site + room simulator live", "First 1,000 holders"],
       state: "live"
     },
     {
@@ -1765,8 +1772,8 @@
       []
     );
     const socials = [
-      { href: CONFIG.x, label: "X", icon: XLogo },
-      { href: CONFIG.telegram, label: "Telegram", icon: Send },
+      { href: CONFIG.announcement, label: "X", icon: XLogo },
+      { href: CONFIG.announcement, label: "Telegram", icon: Send },
       { href: CONFIG.dexscreener, label: "DexScreener", icon: LineChart }
     ];
     return /* @__PURE__ */ React.createElement(
@@ -1812,7 +1819,7 @@
             key: s.label,
             href: s.href,
             target: "_blank",
-            rel: "noreferrer",
+            rel: "noopener noreferrer",
             "aria-label": s.label,
             className: "bg-press hidden p-2 sm:block",
             style: {
@@ -1872,7 +1879,7 @@
             key: s.label,
             href: s.href,
             target: "_blank",
-            rel: "noreferrer",
+            rel: "noopener noreferrer",
             className: "bg-mono flex-1 px-3 py-2 text-center text-xs font-bold",
             style: { background: GOLD, border: `3px solid ${INK}`, color: INK }
           },
@@ -1885,7 +1892,7 @@
           className: "bg-mono mb-4 inline-block px-3 py-1 text-xs font-bold",
           style: { background: GREEN, color: INK, border: `3px solid ${INK}`, boxShadow: hardShadow(INK, 3, 3) }
         },
-        "Issue #1 \xB7 Solana \xB7 fair launch"
+        "Issue #1 \xB7 Robinhood \xB7 fair launch"
       ), /* @__PURE__ */ React.createElement(
         "h1",
         {
@@ -1893,14 +1900,14 @@
           style: { color: t.text, textShadow: `6px 6px 0px ${GOLD}, 10px 10px 0px ${AMBER}` }
         },
         "BENGROLL"
-      ), /* @__PURE__ */ React.createElement("p", { className: "bg-display mt-3 text-2xl leading-tight md:text-3xl", style: { color: AMBER } }, "The cat that larped a bankroll."), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-3 max-w-md text-sm leading-relaxed", style: { color: t.dim } }, "From cracked screens to eight-figure bags. He put on a plastic chain in a room with peeling wallpaper, posted like a whale until the timeline believed him, and the bag showed up anyway."), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap gap-3" }, /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: "#buy", variant: "green" }, "Roll the bag / buy $BENGROLL", /* @__PURE__ */ React.createElement(ArrowRight, { size: 20, strokeWidth: 3 })), /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: CONFIG.x, target: "_blank", rel: "noreferrer", variant: "dark" }, /* @__PURE__ */ React.createElement(XLogo, { size: 19, strokeWidth: 3 }), "Join the timeline")), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "Contract"), /* @__PURE__ */ React.createElement(CopyCA, { t }))), /* @__PURE__ */ React.createElement("div", { className: "relative pt-6 sm:pt-4" }, /* @__PURE__ */ React.createElement(HeroMascotCard, { t }), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mx-auto mt-6 max-w-lg text-center text-xs font-bold", style: { color: t.dim } }, "\u201CI said I was rich until the chart agreed with me.\u201D")))), /* @__PURE__ */ React.createElement("div", { className: "relative my-8" }, /* @__PURE__ */ React.createElement(TickerRibbon, { t, tone: GOLD, angle: -1.4 })), /* @__PURE__ */ React.createElement("section", { className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Interactive" }, "The come up"), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mb-6 max-w-2xl text-sm", style: { color: t.dim } }, "Every click is a post. Every post is a larp. Keep going and the room upgrades around him \u2014 chain first, then the cash on the floor, then the whole penthouse."), /* @__PURE__ */ React.createElement("div", { className: "grid gap-8 lg:grid-cols-5" }, /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-3" }, /* @__PURE__ */ React.createElement(ComeUpRoom, { t, muted, setMuted })), /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-2" }, /* @__PURE__ */ React.createElement("h3", { className: "bg-display mb-3 text-2xl", style: { color: t.text } }, "The cracked screen"), /* @__PURE__ */ React.createElement(CrackedPhone, { t })))), /* @__PURE__ */ React.createElement("section", { id: "tokenomics", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Stat sheet" }, "The bengroll specs"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 sm:grid-cols-2 lg:grid-cols-4" }, SPECS.map((s, i) => /* @__PURE__ */ React.createElement("div", { key: s.label, style: { transform: `rotate(${i % 2 ? 0.7 : -0.7}deg)` } }, /* @__PURE__ */ React.createElement(Panel, { t, lift: true, className: "h-full p-4" }, /* @__PURE__ */ React.createElement("div", { className: "mb-3 flex items-center justify-between" }, /* @__PURE__ */ React.createElement("span", { style: { background: GOLD, border: `3px solid ${INK}`, padding: 6, display: "inline-flex" } }, /* @__PURE__ */ React.createElement(s.icon, { size: 18, strokeWidth: 3, color: INK })), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, String(i + 1).padStart(2, "0"))), /* @__PURE__ */ React.createElement("div", { className: "bg-mono text-xs font-bold uppercase", style: { color: t.dim } }, s.label), /* @__PURE__ */ React.createElement("div", { className: "bg-display text-2xl leading-tight", style: { color: t.text } }, s.value), /* @__PURE__ */ React.createElement("div", { className: "bg-mono mt-1 text-xs", style: { color: AMBER } }, s.sub)))))), /* @__PURE__ */ React.createElement("section", { id: "buy", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Three panels" }, "How to get a bengroll"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 md:grid-cols-3" }, STEPS.map((s) => /* @__PURE__ */ React.createElement(Panel, { key: s.n, t, lift: true, className: "relative p-5" }, /* @__PURE__ */ React.createElement(
+      ), /* @__PURE__ */ React.createElement("p", { className: "bg-display mt-3 text-2xl leading-tight md:text-3xl", style: { color: AMBER } }, "The cat that larped a bankroll."), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-3 max-w-md text-sm leading-relaxed", style: { color: t.dim } }, "From cracked screens to eight-figure bags. He put on a plastic chain in a room with peeling wallpaper, posted like a whale until the timeline believed him, and the bag showed up anyway."), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap gap-3" }, /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: "#buy", variant: "green" }, "Roll the bag / buy $BENGROLL", /* @__PURE__ */ React.createElement(ArrowRight, { size: 20, strokeWidth: 3 })), /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: CONFIG.announcement, target: "_blank", rel: "noopener noreferrer", variant: "dark" }, /* @__PURE__ */ React.createElement(XLogo, { size: 19, strokeWidth: 3 }), "Join the timeline")), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, "Contract"), /* @__PURE__ */ React.createElement(CopyCA, { t }))), /* @__PURE__ */ React.createElement("div", { className: "relative pt-6 sm:pt-4" }, /* @__PURE__ */ React.createElement(HeroMascotCard, { t }), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mx-auto mt-6 max-w-lg text-center text-xs font-bold", style: { color: t.dim } }, "\u201CI said I was rich until the chart agreed with me.\u201D")))), /* @__PURE__ */ React.createElement("div", { className: "relative my-8" }, /* @__PURE__ */ React.createElement(TickerRibbon, { t, tone: GOLD, angle: -1.4 })), /* @__PURE__ */ React.createElement("section", { className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Interactive" }, "The come up"), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mb-6 max-w-2xl text-sm", style: { color: t.dim } }, "Every click is a post. Every post is a larp. Keep going and the room upgrades around him \u2014 chain first, then the cash on the floor, then the whole penthouse."), /* @__PURE__ */ React.createElement("div", { className: "grid gap-8 lg:grid-cols-5" }, /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-3" }, /* @__PURE__ */ React.createElement(ComeUpRoom, { t, muted, setMuted })), /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-2" }, /* @__PURE__ */ React.createElement("h3", { className: "bg-display mb-3 text-2xl", style: { color: t.text } }, "The cracked screen"), /* @__PURE__ */ React.createElement(CrackedPhone, { t })))), /* @__PURE__ */ React.createElement("section", { id: "tokenomics", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Stat sheet" }, "The bengroll specs"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 sm:grid-cols-2 lg:grid-cols-4" }, SPECS.map((s, i) => /* @__PURE__ */ React.createElement("div", { key: s.label, style: { transform: `rotate(${i % 2 ? 0.7 : -0.7}deg)` } }, /* @__PURE__ */ React.createElement(Panel, { t, lift: true, className: "h-full p-4" }, /* @__PURE__ */ React.createElement("div", { className: "mb-3 flex items-center justify-between" }, /* @__PURE__ */ React.createElement("span", { style: { background: GOLD, border: `3px solid ${INK}`, padding: 6, display: "inline-flex" } }, /* @__PURE__ */ React.createElement(s.icon, { size: 18, strokeWidth: 3, color: INK })), /* @__PURE__ */ React.createElement("span", { className: "bg-mono text-xs font-bold", style: { color: t.dim } }, String(i + 1).padStart(2, "0"))), /* @__PURE__ */ React.createElement("div", { className: "bg-mono text-xs font-bold uppercase", style: { color: t.dim } }, s.label), /* @__PURE__ */ React.createElement("div", { className: "bg-display text-2xl leading-tight", style: { color: t.text } }, s.value), /* @__PURE__ */ React.createElement("div", { className: "bg-mono mt-1 text-xs", style: { color: AMBER } }, s.sub)))))), /* @__PURE__ */ React.createElement("section", { id: "buy", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "Three panels" }, "How to get a bengroll"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 md:grid-cols-3" }, STEPS.map((s) => /* @__PURE__ */ React.createElement(Panel, { key: s.n, t, lift: true, className: "relative p-5" }, /* @__PURE__ */ React.createElement(
         "span",
         {
           className: "bg-display absolute -left-3 -top-3 flex h-11 w-11 items-center justify-center text-2xl",
           style: { background: GREEN, color: INK, border: `4px solid ${INK}`, boxShadow: hardShadow(INK, 3, 3) }
         },
         s.n
-      ), /* @__PURE__ */ React.createElement("div", { className: "mb-3 flex justify-end" }, /* @__PURE__ */ React.createElement(s.icon, { size: 30, strokeWidth: 2.6, color: AMBER })), /* @__PURE__ */ React.createElement("h3", { className: "bg-display text-2xl leading-tight", style: { color: t.text } }, s.title), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-2 text-sm leading-relaxed", style: { color: t.dim } }, s.body)))), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap items-center gap-3" }, /* @__PURE__ */ React.createElement(CopyCA, { t }), /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: CONFIG.dexscreener, target: "_blank", rel: "noreferrer", variant: "gold" }, "Check the chart", /* @__PURE__ */ React.createElement(ArrowRight, { size: 19, strokeWidth: 3 })))), /* @__PURE__ */ React.createElement("div", { className: "relative my-8" }, /* @__PURE__ */ React.createElement(TickerRibbon, { t, tone: GREEN, angle: 1.4 })), /* @__PURE__ */ React.createElement("div", { className: "py-8" }, /* @__PURE__ */ React.createElement(BengrollMemeMaker, null)), /* @__PURE__ */ React.createElement("section", { id: "playbook", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "The arc" }, "The playbook"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 md:grid-cols-3" }, CHAPTERS.map((c) => /* @__PURE__ */ React.createElement(
+      ), /* @__PURE__ */ React.createElement("div", { className: "mb-3 flex justify-end" }, /* @__PURE__ */ React.createElement(s.icon, { size: 30, strokeWidth: 2.6, color: AMBER })), /* @__PURE__ */ React.createElement("h3", { className: "bg-display text-2xl leading-tight", style: { color: t.text } }, s.title), /* @__PURE__ */ React.createElement("p", { className: "bg-mono mt-2 text-sm leading-relaxed", style: { color: t.dim } }, s.body)))), /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex flex-wrap items-center gap-3" }, /* @__PURE__ */ React.createElement(CopyCA, { t }), /* @__PURE__ */ React.createElement(ComicButton, { t, as: "a", href: CONFIG.dexscreener, target: "_blank", rel: "noopener noreferrer", variant: "gold" }, "Check the chart", /* @__PURE__ */ React.createElement(ArrowRight, { size: 19, strokeWidth: 3 })))), /* @__PURE__ */ React.createElement("div", { className: "relative my-8" }, /* @__PURE__ */ React.createElement(TickerRibbon, { t, tone: GREEN, angle: 1.4 })), /* @__PURE__ */ React.createElement("div", { className: "py-8" }, /* @__PURE__ */ React.createElement(BengrollMemeMaker, null)), /* @__PURE__ */ React.createElement("section", { id: "playbook", className: "mx-auto max-w-6xl px-4 py-10" }, /* @__PURE__ */ React.createElement(SectionTitle, { t, kicker: "The arc" }, "The playbook"), /* @__PURE__ */ React.createElement("div", { className: "grid gap-6 md:grid-cols-3" }, CHAPTERS.map((c) => /* @__PURE__ */ React.createElement(
         Panel,
         {
           key: c.ch,
@@ -1928,7 +1935,7 @@
           key: s.label,
           href: s.href,
           target: "_blank",
-          rel: "noreferrer",
+          rel: "noopener noreferrer",
           className: "bg-mono bg-press flex items-center gap-2 px-3 py-2 text-xs font-bold",
           style: { background: GOLD, color: INK, border: `4px solid ${INK}`, boxShadow: hardShadow(INK, 4, 4) }
         },
@@ -1952,7 +1959,6 @@
     ReactDOM.render(React.createElement(BengrollLanding), rootEl);
   }
 })();
-
     </script>
   </body>
 </html>
